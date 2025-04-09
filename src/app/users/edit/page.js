@@ -90,7 +90,7 @@ export default function EditProfilePage() {
 
                             <div className="space-y-3 md:space-y-4">
                                 <div>
-                                    <label htmlFor="birthYear" className="block text-xs md:text-sm font-medium mb-2">What's your year of birth?</label>
+                                    <label htmlFor="birthYear" className="block text-xs md:text-sm font-medium mb-2">What&apos;s your year of birth?</label>
                                     <input
                                         type="text"
                                         id="birthYear"
@@ -103,7 +103,7 @@ export default function EditProfilePage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs md:text-sm font-medium mb-2">What's your gender?</label>
+                                    <label className="block text-xs md:text-sm font-medium mb-2">What&apos;s your gender?</label>
                                     <div className="flex flex-wrap gap-2">
                                         {['Female', 'Male', 'Other'].map(gender => (
                                             <label key={gender} className="inline-flex items-center">

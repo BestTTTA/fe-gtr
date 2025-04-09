@@ -1,7 +1,8 @@
 "use client"
 import React, { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import Payment from '../payment/Patment'
+import Payment from '../payment/Payment'
 import MenuUser from '../layout/MenuUser'
 
 function User() {
@@ -50,10 +51,12 @@ function User() {
 
                 <div className="flex items-center gap-4 mb-[16px] pb-[16px] border-b border-[#9CA0B0]">
                   <div className="h-auto w-auto rounded-lg overflow-hidden relative">
-                    <img
+                    <Image
                       src="/users_img/profile.svg"
                       alt="Profile"
                       className="w-[120px] h-[120px] object-cover"
+                      width={1920}
+                      height={1080}
                     />
                     <div className="absolute top-1 right-1 cursor-pointer sm:hidden">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

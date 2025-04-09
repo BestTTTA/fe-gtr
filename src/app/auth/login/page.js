@@ -1,6 +1,6 @@
 import Haderbar from "@/components/layout/Haderbar"
 
-export default function page() {
+export default function Page() {
     return (
         <div className="w-full min-h-screen bg-gradient-to-b from-white via-white to-orange-100">
             <Haderbar />
@@ -33,7 +33,8 @@ export default function page() {
 
                     <div className="text-center pt-4 sm:pt-6">
                         <p className="text-sm">
-                            Don't have an account? <a href="/auth/signup" className="font-medium underline hover:text-[#ff9933] transition-colors">Sign Up</a>
+                            Don&apos;t have an account?
+                            <a href="/auth/signup" className="font-medium underline hover:text-[#ff9933] transition-colors">Sign Up</a>
                         </p>
                     </div>
                 </div>

@@ -4,7 +4,8 @@ import Haderbar from "@/components/layout/Haderbar"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 
-export default function page() {
+// Change the component name from 'page' to 'Page'
+export default function Page() {
     const [countdown, setCountdown] = useState(60);
     const [isResending, setIsResending] = useState(false);
 
@@ -56,7 +57,7 @@ export default function page() {
                                 <span className="text-[#2B2E38]">Able to resend OTP password again in <span className="text-[#2B2E38]">{countdown}s</span></span>
                             ) : (
                                 <>
-                                    <span className="text-[#2B2E38]">Don't received code? </span>
+                                    <span className="text-[#2B2E38]">Don&apos;t received code? </span>
                                     <Link href="#" onClick={handleResendOTP} className="font-medium underline text-[#2B2E38]">
                                         Resend OTP password
                                     </Link>

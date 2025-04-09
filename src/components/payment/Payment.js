@@ -1,5 +1,6 @@
 "use client"
 import React from 'react'
+import Image from 'next/image'
 
 function Payment() {
   return (
@@ -80,7 +81,7 @@ function Payment() {
           <div className="flex text-sm text-gray-500 px-8 py-2 rounded-[8px] bg-[#F0F1F5]">
             Manage payment by
             <div className="flex items-center gap-4 px-2">
-              <img src='/users_img/stripe.svg' alt='Stripe' className="w-[34px] h-[14px]" />
+              <Image src='/users_img/stripe.svg' alt='Stripe' className="w-[34px] h-[14px]" width={1920} height={1080} />
             </div>
           </div>
         </div>
@@ -89,7 +90,7 @@ function Payment() {
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center gap-4">
               <div className="text-blue-600">
-                <img src="/users_img/visa.svg" alt="Payment Icon" className="w-[64px] h-[64px]" />
+                <Image src="/users_img/visa.svg" alt="Payment Icon" className="w-[64px] h-[64px]" width={1920} height={1080}/>
               </div>
               <div>
                 <div className="text-sm text-gray-500">Payment Method</div>
