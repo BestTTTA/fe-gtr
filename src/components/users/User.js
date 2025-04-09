@@ -21,12 +21,12 @@ function User() {
       <div className='ml-[48px] mr-[48px] mt-[48px] bg-white overflow-auto'>
         <div className="sm:hidden flex justify-between items-center mb-[16px]">
           <h2 className="text-xl font-bold">Profile</h2>
-          <button className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm hover:bg-gray-50">
+          <Link href="#" className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm hover:bg-gray-50">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
             </svg>
             Edit Profile
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -41,12 +41,12 @@ function User() {
               <div>
                 <div className="hidden sm:flex flex-col sm:flex-row justify-between items-center mb-[16px]">
                   <h2 className="text-xl font-bold">User Profile</h2>
-                  <button className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm hover:bg-gray-50">
+                  <Link href="/users/edit" className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm hover:bg-gray-50">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                     </svg>
                     Edit Profile
-                  </button>
+                  </Link>
                 </div>
 
                 <div className="flex items-center gap-4 mb-[16px] pb-[16px] border-b border-[#9CA0B0]">

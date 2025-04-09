@@ -240,7 +240,7 @@ export default function EditProfilePage() {
                                 onClick={() => setShowDeleteModal(true)}
                             >
                                 <svg className="w-4 h-4 md:w-5 md:h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="none">
-                                    <path d="M4.5 14.25C4.5 15.075 5.175 15.75 6 15.75H12C12.825 15.75 13.5 15.075 13.5 14.25V5.25H4.5V14.25ZM14.25 3H11.625L10.875 2.25H7.125L6.375 3H3.75V4.5H14.25V3Z" fill="#1C1B1F"/>
+                                    <path d="M4.5 14.25C4.5 15.075 5.175 15.75 6 15.75H12C12.825 15.75 13.5 15.075 13.5 14.25V5.25H4.5V14.25ZM14.25 3H11.625L10.875 2.25H7.125L6.375 3H3.75V4.5H14.25V3Z" fill="#1C1B1F" />
                                 </svg>
                                 Delete Account
                             </button>
@@ -256,13 +256,13 @@ export default function EditProfilePage() {
                     <div className="bg-white rounded-xl w-full max-w-md p-6 z-10">
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-2">
-                                <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="currentColor"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                    <path d="M20.667 5.99935H27.3337V8.66602H24.667V25.9993C24.667 26.7357 24.0701 27.3327 23.3337 27.3327H4.66699C3.93062 27.3327 3.33366 26.7357 3.33366 25.9993V8.66602H0.666992V5.99935H7.33366V1.99935C7.33366 1.26298 7.93062 0.666016 8.66699 0.666016H19.3337C20.0701 0.666016 20.667 1.26298 20.667 1.99935V5.99935ZM22.0003 8.66602H6.00033V24.666H22.0003V8.66602ZM10.0003 12.666H12.667V20.666H10.0003V12.666ZM15.3337 12.666H18.0003V20.666H15.3337V12.666ZM10.0003 3.33268V5.99935H18.0003V3.33268H10.0003Z" fill="#31363F" />
                                 </svg>
                                 <h2 className="text-lg font-bold">Delete Account</h2>
                             </div>
-                            <button 
-                                className="text-gray-500 hover:text-gray-700"
+                            <button
+                                className="text-black hover:text-gray-700"
                                 onClick={() => setShowDeleteModal(false)}
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,7 +270,7 @@ export default function EditProfilePage() {
                                 </svg>
                             </button>
                         </div>
-                        
+
                         <div className="mb-6">
                             <p className="text-sm mb-2">You will permanently lose your:</p>
                             <ul className="list-disc pl-5 text-sm space-y-1">
@@ -278,7 +278,7 @@ export default function EditProfilePage() {
                                 <li>All of your assessment record</li>
                             </ul>
                         </div>
-                        
+
                         <div className="flex gap-3 justify-end">
                             <button
                                 className="py-2 px-4 border border-gray-300 rounded-full text-sm"
@@ -287,7 +287,7 @@ export default function EditProfilePage() {
                                 Cancel
                             </button>
                             <button
-                                className="py-2 px-4 bg-orange-500 text-white rounded-full text-sm flex items-center"
+                                className="py-2 px-4 bg-orange-500 text-black rounded-full text-sm flex items-center"
                                 onClick={() => {
                                     // Handle delete account logic here
                                     console.log('Account deleted');
