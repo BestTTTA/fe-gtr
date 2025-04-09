@@ -1,6 +1,7 @@
 
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { NavbarProvider } from "@/context/NavbarProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,10 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} flex`}
-      >
+      <body className={`${inter.className} flex`}>
+        <NavbarProvider>
           {children}
+        </NavbarProvider>
       </body>
     </html>
   );

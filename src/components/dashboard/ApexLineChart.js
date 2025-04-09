@@ -12,7 +12,7 @@ const ApexLineChart = () => {
     series: [
       {
         name: "Series 1",
-        data: [31, 40, 28, 51, 42, 109, 100],
+        data: [52.2, 56.1, 50.0, 48.7, 55.4, 73.8],
       },
     ],
     options: {
@@ -25,23 +25,28 @@ const ApexLineChart = () => {
         enabled: true,
       },
       stroke: {
-        curve: "smooth",
+        curve: "straight",
       },
       xaxis: {
-        type: "datetime",
-        categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z",
-        ],
+        type: "category",
+        categories: ["2/9", "16/9", "1/10", "15/10", "1/11", "Today 16/11"],
+        labels: {
+          formatter: function(value) {
+            return value;
+          }
+        },
+        tickPlacement: 'on',
+      },
+      yaxis: {
+        min: 0,
+        max: 100,
+        tickAmount: 5, 
       },
       tooltip: {
         x: {
-          format: "dd/MM/yy HH:mm",
+          formatter: function(value, opts) {
+            return chartData.options.xaxis.categories[opts.dataPointIndex];
+          }
         },
       },
     },
@@ -54,7 +59,7 @@ const ApexLineChart = () => {
         series={chartData.series}
         type="area"
         height={350}
-        width={700}
+        width="100%"
       />
     </div>
   );
