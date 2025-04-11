@@ -20,8 +20,8 @@ function Menu() {
       )}
 
       <div
-        className={`fixed top-0 left-0 md:static transition-all duration-300 z-50 h-dvh flex flex-col bg-[#0C2955] overflow-hidden ${
-          isOpen ? "w-[240px] p-4 md:p-0" : "w-0 md:w-[240px]"
+        className={`fixed h-full md:h-auto text-nowrap top-0 left-0 md:static transition-all duration-300 z-50 flex flex-col bg-[#0C2955] overflow-hidden ${
+          isOpen ? "w-[240px] p-4 md:p-4" : "w-0 md:w-[240px]"
         }`}
       >
         {isOpen && (
@@ -64,8 +64,10 @@ function Menu() {
             <div className="pt-[32px] flex flex-col">
               <Link
                 href="/your-gtr/dashboard"
-                className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] text-[#C1C6DA] ${
-                  pathname === "/your-gtr/dashboard" ? "text-white" : ""
+                className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
+                  pathname === "/your-gtr/dashboard" 
+                    ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium" 
+                    : "text-[#C1C6DA]"
                 }`}
               >
                 <Image
@@ -73,6 +75,7 @@ function Menu() {
                   width={24}
                   height={24}
                   alt="Dashboard"
+                  className={pathname === "/your-gtr/dashboard" ? "filter invert" : ""}
                 />
                 Dashboard
               </Link>
@@ -120,8 +123,10 @@ function Menu() {
                 <Link
                   key={href}
                   href={href}
-                  className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] text-[#C1C6DA] ${
-                    pathname === href ? "text-white" : ""
+                  className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
+                    pathname === href 
+                      ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium" 
+                      : "text-[#C1C6DA]"
                   }`}
                 >
                   <Image
@@ -129,6 +134,7 @@ function Menu() {
                     width={24}
                     height={24}
                     alt={label}
+                    className={pathname === href ? "filter invert" : ""}
                   />
                   {label}
                 </Link>
