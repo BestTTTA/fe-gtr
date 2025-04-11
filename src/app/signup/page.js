@@ -43,7 +43,7 @@ export default function page() {
                         </div>
 
                         <div className="pt-4 sm:pt-[24px]">
-                            <a href="/auth/otp-verification">
+                            <a href="/otp-verification">
                                 <button className="w-full text-center bg-[#ff9933] rounded-full px-3 sm:px-4 py-2 sm:py-3 text-black font-medium text-sm sm:text-base hover:bg-[#f08827] transition-colors">
                                     Create Account
                                 </button>
@@ -52,7 +52,7 @@ export default function page() {
 
                         <div className="text-center pt-2">
                             <p className="text-xs sm:text-sm">
-                                I have an account? <a href="/auth/login" className="font-medium underline">Login</a>
+                                I have an account? <a href="/login" className="font-medium underline">Login</a>
                             </p>
                         </div>
                     </div>

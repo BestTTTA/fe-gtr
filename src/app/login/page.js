@@ -1,4 +1,5 @@
 import Haderbar from "@/components/layout/Haderbar"
+import Link from "next/link"
 
 export default function Page() {
     return (
@@ -26,15 +27,18 @@ export default function Page() {
                     </div>
 
                     <div className="pt-4 sm:pt-6">
-                        <button className="w-full text-center bg-[#ff9933] hover:bg-[#ff8000] transition-colors rounded-full px-4 py-2 sm:py-3 text-black font-medium">
-                            Login
-                        </button>
+                        <Link href="/login">
+                            <button className="w-full text-center bg-[#ff9933] hover:bg-[#ff8000] transition-colors rounded-full px-4 py-2 sm:py-3 text-black font-medium">
+                                Login
+                            </button>
+                        </Link>
+
                     </div>
 
                     <div className="text-center pt-4 sm:pt-6">
                         <p className="text-sm">
                             Don&apos;t have an account?
-                            <a href="/auth/signup" className="font-medium underline hover:text-[#ff9933] transition-colors">Sign Up</a>
+                            <Link href="/signup" className="font-medium underline hover:text-[#ff9933] transition-colors">Sign Up</Link>
                         </p>
                     </div>
                 </div>

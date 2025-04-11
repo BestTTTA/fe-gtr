@@ -29,7 +29,8 @@ function Menu() {
             {/* Profile */}
             <div className="flex items-center flex-col justify-between px-[16px]">
               <div className="flex w-full items-center justify-between">
-                <div className="flex items-center gap-[8px] py-[16px]">
+                <a href="/users">
+                  <div className="flex items-center gap-[8px] py-[16px]">
                   <Image
                     src="/navbar-icons/profilepic.png"
                     width={48}
@@ -39,6 +40,7 @@ function Menu() {
                   />
                   <p className="text-sm font-semibold text-white">Chris W.</p>
                 </div>
+                </a>
                 <Image
                   src="/navbar-icons/edit-icon.png"
                   width={16}

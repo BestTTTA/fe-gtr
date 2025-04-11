@@ -1,4 +1,5 @@
 import Haderbar from "@/components/layout/Haderbar"
+import Link from "next/link"
 
 export default function page() {
     return (
@@ -23,9 +24,9 @@ export default function page() {
                         <div className="border border-[#737685] bg-[#F0F1F5] rounded-[16px] sm:rounded-[24px] p-4 sm:p-6 flex-1">
                             <h2 className="text-lg sm:text-xl font-bold mb-2">Explore personal life dashboard</h2>
                             <p className="text-xs sm:text-sm mb-4 sm:mb-6">Description</p>
-                            <button className="w-full text-center bg-white border border-gray-300 rounded-[16px] sm:rounded-[24px] px-3 sm:px-4 py-2 sm:py-3 text-black font-medium text-sm sm:text-base hover:bg-gray-50 transition-colors">
+                            <Link href="/" className="w-full text-center bg-white border border-gray-300 rounded-[16px] sm:rounded-[24px] px-3 sm:px-4 py-2 sm:py-3 text-black font-medium text-sm sm:text-base hover:bg-gray-50 transition-colors block">
                                 Go To Dashboard
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
