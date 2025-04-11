@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="">
         <div className="flex">
           <Menu />
           <div className="flex flex-col w-full">

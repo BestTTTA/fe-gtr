@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <>
-      <div className=" md:hidden w-full bg-white drop-shadow-sm shadow-[0px_-3px_8px_rgba(0,0,0,0.5)] py-[16px] px-[16px]">
+      <div className="sticky top-0 z-20 md:hidden w-full bg-white drop-shadow-sm shadow-[0px_-3px_8px_rgba(0,0,0,0.5)] py-[16px] px-[16px]">
         <div
           className={`flex flex-col ${
             pathname != "/" ? "h-fit" : "h-[94px]"

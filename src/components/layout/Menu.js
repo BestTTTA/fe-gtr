@@ -20,7 +20,7 @@ function Menu() {
       )}
 
       <div
-        className={`fixed h-full md:h-auto text-nowrap top-0 left-0 md:static transition-all duration-300 z-50 flex flex-col bg-[#0C2955] overflow-hidden ${
+        className={`fixed z-50 min-h-screen text-nowrap top-0 left-0 md:static transition-all duration-300 flex flex-col bg-[#0C2955] overflow-hidden ${
           isOpen ? "w-[240px] p-4 md:p-4" : "w-0 md:w-[240px]"
         }`}
       >
@@ -31,15 +31,15 @@ function Menu() {
               <div className="flex w-full items-center justify-between">
                 <a href="/users">
                   <div className="flex items-center gap-[8px] py-[16px]">
-                  <Image
-                    src="/navbar-icons/profilepic.png"
-                    width={48}
-                    height={48}
-                    className="rounded-full"
-                    alt="Profile"
-                  />
-                  <p className="text-sm font-semibold text-white">Chris W.</p>
-                </div>
+                    <Image
+                      src="/navbar-icons/profilepic.png"
+                      width={48}
+                      height={48}
+                      className="rounded-full"
+                      alt="Profile"
+                    />
+                    <p className="text-sm font-semibold text-white">Chris W.</p>
+                  </div>
                 </a>
                 <Image
                   src="/navbar-icons/edit-icon.png"
@@ -65,8 +65,8 @@ function Menu() {
               <Link
                 href="/your-gtr/dashboard"
                 className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
-                  pathname === "/your-gtr/dashboard" 
-                    ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium" 
+                  pathname === "/your-gtr/dashboard"
+                    ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium"
                     : "text-[#C1C6DA]"
                 }`}
               >
@@ -75,7 +75,9 @@ function Menu() {
                   width={24}
                   height={24}
                   alt="Dashboard"
-                  className={pathname === "/your-gtr/dashboard" ? "filter invert" : ""}
+                  className={
+                    pathname === "/your-gtr/dashboard" ? "filter invert" : ""
+                  }
                 />
                 Dashboard
               </Link>
@@ -124,8 +126,8 @@ function Menu() {
                   key={href}
                   href={href}
                   className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
-                    pathname === href 
-                      ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium" 
+                    pathname === href
+                      ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium"
                       : "text-[#C1C6DA]"
                   }`}
                 >
