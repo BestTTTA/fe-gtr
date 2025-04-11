@@ -123,18 +123,12 @@ function SelfCard() {
                 <h3 className="font-semibold mb-2">Top Emotions and States</h3>
                 <p className="text-[14px] flex items-start text-gray-500 mb-4">
                   Know what to look out for to guide your daily life.
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8.00016 14.6663C4.31826 14.6663 1.3335 11.6815 1.3335 7.99967C1.3335 4.31777 4.31826 1.33301 8.00016 1.33301C11.682 1.33301 14.6668 4.31777 14.6668 7.99967C14.6668 11.6815 11.682 14.6663 8.00016 14.6663ZM8.00016 13.333C10.9457 13.333 13.3335 10.9452 13.3335 7.99967C13.3335 5.05415 10.9457 2.66634 8.00016 2.66634C5.05464 2.66634 2.66683 5.05415 2.66683 7.99967C2.66683 10.9452 5.05464 13.333 8.00016 13.333ZM8.66683 6.99967V9.99967H9.3335V11.333H6.66683V9.99967H7.3335V8.33301H6.66683V6.99967H8.66683ZM9.00016 5.33301C9.00016 5.88529 8.55243 6.33301 8.00016 6.33301C7.4479 6.33301 7.00016 5.88529 7.00016 5.33301C7.00016 4.78072 7.4479 4.33301 8.00016 4.33301C8.55243 4.33301 9.00016 4.78072 9.00016 5.33301Z"
-                      fill="#31363F"
-                    />
-                  </svg>
+                  <Image
+                    alt="Icon GTR"
+                    src="/self-insights/i-icon.svg"
+                    width={20}
+                    height={20}
+                  />
                 </p>
               </div>
 
@@ -281,18 +275,12 @@ function SelfCard() {
                 <h3 className="font-semibold mb-2">Top Emotions and States</h3>
                 <p className="text-[14px] flex items-start text-gray-500 mb-4">
                   Know what to look out for to guide your daily life.
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8.00016 14.6663C4.31826 14.6663 1.3335 11.6815 1.3335 7.99967C1.3335 4.31777 4.31826 1.33301 8.00016 1.33301C11.682 1.33301 14.6668 4.31777 14.6668 7.99967C14.6668 11.6815 11.682 14.6663 8.00016 14.6663ZM8.00016 13.333C10.9457 13.333 13.3335 10.9452 13.3335 7.99967C13.3335 5.05415 10.9457 2.66634 8.00016 2.66634C5.05464 2.66634 2.66683 5.05415 2.66683 7.99967C2.66683 10.9452 5.05464 13.333 8.00016 13.333ZM8.66683 6.99967V9.99967H9.3335V11.333H6.66683V9.99967H7.3335V8.33301H6.66683V6.99967H8.66683ZM9.00016 5.33301C9.00016 5.88529 8.55243 6.33301 8.00016 6.33301C7.4479 6.33301 7.00016 5.88529 7.00016 5.33301C7.00016 4.78072 7.4479 4.33301 8.00016 4.33301C8.55243 4.33301 9.00016 4.78072 9.00016 5.33301Z"
-                      fill="#31363F"
-                    />
-                  </svg>
+                  <Image
+                    alt="Icon GTR"
+                    src="/self-insights/i-icon.svg"
+                    width={20}
+                    height={20}
+                  />
                 </p>
               </div>
 
@@ -367,7 +355,7 @@ function SelfCard() {
                   </h3>
                   <p className="text-sm text-gray-500 mb-4">
                     These are the notes you made during the assessment. Now that
-                    you've seen the bigger picture, would you like to add
+                    you&apos;ve seen the bigger picture, would you like to add
                     anything?
                   </p>
 
@@ -380,18 +368,12 @@ function SelfCard() {
                     className="border rounded-full flex items-center mt-4 px-4 py-2 gap-2"
                     onClick={() => setIsEditing(true)}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                    >
-                      <path
-                        d="M4.81066 11.9174L12.4172 4.31077L11.3566 3.25012L3.75 10.8567V11.9174H4.81066ZM5.43198 13.4174H2.25V10.2354L10.8263 1.65913C11.1192 1.36623 11.594 1.36623 11.8869 1.65913L14.0083 3.78044C14.3012 4.07334 14.3012 4.54821 14.0083 4.84111L5.43198 13.4174ZM2.25 14.9174H15.75V16.4174H2.25V14.9174Z"
-                        fill="black"
-                      />
-                    </svg>
+                    <Image
+                      alt="GTR Icon"
+                      width={20}
+                      height={20}
+                      src="/self-insights/edit-icon.svg"
+                    />
                     Edit reflection
                   </button>
                 </div>
@@ -402,7 +384,7 @@ function SelfCard() {
                   </h3>
                   <p className="text-sm text-gray-500 mb-4">
                     These are the notes you made during the assessment. Now that
-                    you've seen the bigger picture, would you like to add
+                    you&apos;ve seen the bigger picture, would you like to add
                     anything?
                   </p>
                   <textarea
@@ -451,18 +433,12 @@ function SelfCard() {
                     className="border rounded-full flex items-center mt-4 px-4 py-2 gap-2"
                     onClick={() => setIsEditing2(true)}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                    >
-                      <path
-                        d="M4.81066 11.9174L12.4172 4.31077L11.3566 3.25012L3.75 10.8567V11.9174H4.81066ZM5.43198 13.4174H2.25V10.2354L10.8263 1.65913C11.1192 1.36623 11.594 1.36623 11.8869 1.65913L14.0083 3.78044C14.3012 4.07334 14.3012 4.54821 14.0083 4.84111L5.43198 13.4174ZM2.25 14.9174H15.75V16.4174H2.25V14.9174Z"
-                        fill="black"
-                      />
-                    </svg>
+                    <Image
+                      alt="GTR Icon"
+                      width={20}
+                      height={20}
+                      src="/self-insights/edit-icon.svg"
+                    />
                     Edit reflection
                   </button>
                 </div>
@@ -517,7 +493,7 @@ function SelfCard() {
                 <div className="h-full w-3/4 bg-green-500 rounded-full"></div>
               </div>
               <p className="text-sm text-gray-600">
-                You've made significant progress in your personal development
+                You&apos;ve made significant progress in your personal development
                 this year.
               </p>
             </div>
