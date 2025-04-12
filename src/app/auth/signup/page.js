@@ -52,7 +52,7 @@ export default function page() {
 
                         <div className="text-center pt-2">
                             <p className="text-xs sm:text-sm">
-                                I have an account? <a href="/login" className="font-medium underline">Login</a>
+                                I have an account? <a href="/auth/login" className="font-medium underline">Login</a>
                             </p>
                         </div>
                     </div>
