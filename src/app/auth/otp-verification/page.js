@@ -1,6 +1,5 @@
 "use client"
 
-import Menu from "@/components/layout/Menu"
 import Haderbar from "@/components/layout/Haderbar"
 import Link from "next/link"
 import { useState, useEffect } from "react"

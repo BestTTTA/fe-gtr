@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Payment from '../payment/Payment'
 import MenuUser from '../layout/MenuUser'
-import Navbar from '../layout/Navbar'
 import { useContext } from 'react'
 import { NavbarContext } from '@/context/NavbarProvider'
 
@@ -29,7 +28,7 @@ function User() {
   )
 
   const EditProfileButton = () => (
-    <Link href="/users/edit" className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm hover:bg-gray-50">
+    <Link href="/your-gtr/edit" className="flex items-center gap-2 border rounded-full px-4 py-2 text-sm hover:bg-gray-50">
       <EditProfileIcon />
       Edit Profile
     </Link>
@@ -99,7 +98,6 @@ function User() {
 
   return (
     <div className="flex-1">
-      <Navbar />
       <div className='px-4 sm:px-12 h-screen bg-[#F0F1F5] overflow-auto'>
         <h1 className="hidden sm:flex flex-col sm:flex-row px-4 sm:px-12 mt-5 mb-5 py-4 text-2xl sm:text-3xl font-bold">
           User Account

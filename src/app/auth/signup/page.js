@@ -1,4 +1,3 @@
-import Menu from "@/components/layout/Menu"
 import Haderbar from "@/components/layout/Haderbar"
 
 export default function page() {

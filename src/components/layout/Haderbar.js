@@ -7,7 +7,7 @@ function Haderbar() {
   const [showMenu, setShowMenu] = useState(false)
 
   // Define which pages should show the header
-  const authPages = ['/signup', '/users/deleted', '/login', '/otp-verification', '/signup/success']
+  const authPages = ['/auth/signup', '/auth/users/deleted', '/auth/login', '/auth/otp-verification', '/auth/success']
 
   const toggleMenu = () => {
     setShowMenu(!showMenu)

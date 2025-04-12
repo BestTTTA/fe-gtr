@@ -1,6 +1,5 @@
-import Haderbar from "@/components/layout/Haderbar"
-import Menu from "@/components/layout/Menu"
 import Link from "next/link"
+import Haderbar from "@/components/layout/Haderbar"
 
 export default function page() {
     return (

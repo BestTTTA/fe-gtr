@@ -1,4 +1,3 @@
-import Menu from "@/components/layout/Menu"
 import Haderbar from "@/components/layout/Haderbar"
 import Link from "next/link"
 
@@ -30,7 +29,7 @@ export default function Page() {
                     </div>
 
                     <div className="pt-4 sm:pt-6">
-                        <Link href="/login">
+                        <Link href="/auth/login">
                             <button className="w-full text-center bg-[#ff9933] hover:bg-[#ff8000] transition-colors rounded-[24px] px-4 py-2 sm:py-3 text-black font-medium">
                                 Login
                             </button>
@@ -40,7 +39,7 @@ export default function Page() {
                     <div className="text-center pt-4 sm:pt-6">
                         <p className="text-sm">
                             Don&apos;t have an account?{" "}
-                            <Link href="/signup" className="font-medium underline hover:text-[#ff9933] transition-colors">
+                            <Link href="/auth/signup" className="font-medium underline hover:text-[#ff9933] transition-colors">
                                 Sign Up
                             </Link>
                         </p>
