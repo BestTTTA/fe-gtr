@@ -1,13 +1,15 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Payment from '../payment/Payment'
 import MenuUser from '../layout/MenuUser'
 import Navbar from '../layout/Navbar'
+import { useContext } from 'react'
+import { NavbarContext } from '@/context/NavbarProvider'
 
 function User() {
-  const [activeTab, setActiveTab] = useState('profile')
+  const { activeTab, setActiveTab } = useContext(NavbarContext);
 
   const EditProfileIcon = () => (
     <svg
@@ -97,7 +99,7 @@ function User() {
 
   return (
     <div className="flex-1">
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Navbar />
       <div className='px-4 sm:px-12 h-screen bg-[#F0F1F5] overflow-auto'>
         <h1 className="hidden sm:flex flex-col sm:flex-row px-4 sm:px-12 mt-5 mb-5 py-4 text-2xl sm:text-3xl font-bold">
           User Account
@@ -113,7 +115,6 @@ function User() {
             <div className="hidden sm:flex sticky top-0 bg-white z-10 text-base">
               <MenuUser activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
-
             <div className="flex-1 overflow-y-auto">
               {activeTab === 'profile' ? <ProfileSection /> : <Payment />}
             </div>

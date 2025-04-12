@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Menu from '@/components/layout/Menu'
-import Haderbar from '@/components/layout/Haderbar'
+import Navbar from '@/components/layout/Navbar'
 
 export default function EditProfilePage() {
     const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ export default function EditProfilePage() {
         <>
             <Menu />
             <div className="bg-gray-50 w-full min-h-screen">
-                <Haderbar />
+                <Navbar />
                 <div className="max-w-2xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-4 pb-8">
                     <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-4">Edit Profile</h1>
                     <div className="bg-[#C6B06A] rounded-lg p-2 sm:p-2.5 md:p-3 lg:p-4 mb-4 md:mb-6 flex items-start gap-2">

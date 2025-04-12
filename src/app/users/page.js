@@ -5,11 +5,11 @@ import User from '@/components/users/User'
 
 export default function Page() {
   return (
-    <div style={{ display: 'flex', }}>
-      <div style={{ flex: '0 0 auto' }}>
+    <div className="flex">
+      <div className="flex-none">
         <Menu />
       </div>
-      <div style={{ flex: '1' }}>
+      <div className="flex-1">
         <User />
       </div>
     </div>

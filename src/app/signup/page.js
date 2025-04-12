@@ -1,9 +1,10 @@
 import Menu from "@/components/layout/Menu"
+import Haderbar from "@/components/layout/Haderbar"
 
 export default function page() {
     return (
         <div className="w-full min-h-screen bg-gradient-to-b from-white via-white to-orange-100">
-            <Menu />
+            <Haderbar />
             <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                 <div className="py-8 sm:py-12 md:py-[48px] flex flex-col items-center">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black font-bold">Sign Up</h1>
