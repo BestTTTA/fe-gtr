@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Payment from '../payment/Payment'
 import MenuUser from '../layout/MenuUser'
-import Haderbar from '../layout/Haderbar'
+import Navbar from '../layout/Navbar'
 
 function User() {
   const [activeTab, setActiveTab] = useState('profile')
@@ -97,7 +97,7 @@ function User() {
 
   return (
     <div className="flex-1">
-      <Haderbar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className='px-4 sm:px-12 h-screen bg-[#F0F1F5] overflow-auto'>
         <h1 className="hidden sm:flex flex-col sm:flex-row px-4 sm:px-12 mt-5 mb-5 py-4 text-2xl sm:text-3xl font-bold">
           User Account

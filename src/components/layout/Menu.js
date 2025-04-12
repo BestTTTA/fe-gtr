@@ -3,12 +3,15 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavbarContext } from "@/context/NavbarProvider";
+import MenuUser from "./MenuUser";
 
 function Menu() {
   const pathname = usePathname();
   let { isOpen, setIsOpen } = useContext(NavbarContext);
+
+  const [activeTab, setActiveTab] = useState('profile')
 
   return (
     <>
@@ -20,9 +23,8 @@ function Menu() {
       )}
 
       <div
-        className={`fixed z-50 min-h-screen text-nowrap top-0 left-0 md:static transition-all duration-300 flex flex-col bg-[#0C2955] overflow-hidden ${
-          isOpen ? "w-[240px] p-4 md:p-4" : "w-0 md:w-[240px]"
-        }`}
+        className={`fixed top-0 left-0 md:static transition-all duration-300 z-50 h-dvh flex flex-col bg-[#0C2955] overflow-hidden ${isOpen ? "w-[240px] p-4 md:p-0" : "w-0 md:w-[240px]"
+          }`}
       >
         {isOpen && (
           <>
@@ -64,20 +66,14 @@ function Menu() {
             <div className="pt-[32px] flex flex-col">
               <Link
                 href="/your-gtr/dashboard"
-                className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
-                  pathname === "/your-gtr/dashboard"
-                    ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium"
-                    : "text-[#C1C6DA]"
-                }`}
+                className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] text-[#C1C6DA] ${pathname === "/your-gtr/dashboard" ? "text-white" : ""
+                  }`}
               >
                 <Image
                   src="/navbar-icons/function-line.png"
                   width={24}
                   height={24}
                   alt="Dashboard"
-                  className={
-                    pathname === "/your-gtr/dashboard" ? "filter invert" : ""
-                  }
                 />
                 Dashboard
               </Link>
@@ -125,23 +121,20 @@ function Menu() {
                 <Link
                   key={href}
                   href={href}
-                  className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
-                    pathname === href
-                      ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium"
-                      : "text-[#C1C6DA]"
-                  }`}
+                  className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] text-[#C1C6DA] ${pathname === href ? "text-white" : ""
+                    }`}
                 >
                   <Image
                     src={`/navbar-icons/${icon}`}
                     width={24}
                     height={24}
                     alt={label}
-                    className={pathname === href ? "filter invert" : ""}
                   />
                   {label}
                 </Link>
               ))}
             </div>
+            <MenuUser activeTab={activeTab} setActiveTab={setActiveTab} />
           </>
         )}
       </div>

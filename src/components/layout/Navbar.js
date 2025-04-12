@@ -27,13 +27,23 @@ function Navbar() {
                 alt="Picture of the author"
               />
             </div>
-            <div className="w-[48px] h-[48px] flex items-center justify-center">
-              <Image
-                src="/navbar-icons/menu-plus-icon.png"
-                width={24}
-                height={24}
-                alt="Picture of the author"
-              />
+            <div className="flex">
+              <div className="w-[48px] h-[48px] flex items-center justify-center">
+                <Image
+                  src="/users_img/Icon.svg"
+                  width={24}
+                  height={24}
+                  alt="Picture of the author"
+                />
+              </div>
+              <div className="w-[48px] h-[48px] flex items-center justify-center">
+                <Image
+                  src="/navbar-icons/menu-plus-icon.png"
+                  width={24}
+                  height={24}
+                  alt="Picture of the author"
+                />
+              </div>
             </div>
           </div>
           {pathname != "/" ? (

@@ -1,6 +1,6 @@
 "use client"
 
-import Haderbar from "@/components/layout/Haderbar"
+import Menu from "@/components/layout/Menu"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 
@@ -30,7 +30,7 @@ export default function Page() {
 
     return (
         <div className="w-full min-h-screen bg-gradient-to-b from-white via-white to-orange-100">
-            <Haderbar />
+            <Menu />
             <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                 <div className="pt-8 sm:pt-12 md:pt-16 flex flex-col items-center">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black font-bold">OTP Password</h1>
