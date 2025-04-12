@@ -43,7 +43,7 @@ export default function page() {
                         </div>
 
                         <div className="pt-4 sm:pt-[24px]">
-                            <a href="/otp-verification">
+                            <a href="/auth/otp-verification">
                                 <button className="w-full text-center bg-[#ff9933] rounded-[24px] px-3 sm:px-4 py-2 sm:py-3 text-black font-medium text-sm sm:text-base hover:bg-[#f08827] transition-colors">
                                     Create Account
                                 </button>
