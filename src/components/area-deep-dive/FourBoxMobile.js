@@ -167,12 +167,12 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
               </div>
             ))}
             
-            {socialData.notes && (
+            {/* {socialData.notes && (
               <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
                 <h4 className="text-sm font-semibold mb-1">Notes:</h4>
                 <p className="text-sm text-gray-600">{socialData.notes}</p>
               </div>
-            )}
+            )} */}
           </div>
         )}
       </div>
@@ -241,13 +241,13 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 </div>
               </div>
             ))}
-            
+{/*             
             {actionsData.notes && (
               <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
                 <h4 className="text-sm font-semibold mb-1">Notes:</h4>
                 <p className="text-sm text-gray-600">{actionsData.notes}</p>
               </div>
-            )}
+            )} */}
           </div>
         )}
       </div>
@@ -316,13 +316,13 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 </div>
               </div>
             ))}
-            
+{/*             
             {getsData.notes && (
               <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
                 <h4 className="text-sm font-semibold mb-1">Notes:</h4>
                 <p className="text-sm text-gray-600">{getsData.notes}</p>
               </div>
-            )}
+            )} */}
           </div>
         )}
       </div>
@@ -391,13 +391,13 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 </div>
               </div>
             ))}
-            
+{/*             
             {environmentData.notes && (
               <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
                 <h4 className="text-sm font-semibold mb-1">Notes:</h4>
                 <p className="text-sm text-gray-600">{environmentData.notes}</p>
               </div>
-            )}
+            )} */}
           </div>
         )}
       </div>

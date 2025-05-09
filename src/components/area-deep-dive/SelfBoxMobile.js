@@ -79,13 +79,13 @@ export default function SelfBoxMobile({ areaData }) {
               </div>
             </div>
           ))}
-          
+{/*           
           {areaData.notes && (
             <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
               <h4 className="text-sm font-semibold mb-1">Notes:</h4>
               <p className="text-sm text-gray-600">{areaData.notes}</p>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>

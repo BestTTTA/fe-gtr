@@ -195,13 +195,13 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
               </div>
             ))}
           </div>
-          
+{/*           
           {socialData.notes && (
             <div className="mt-4 bg-gray-50 p-3 rounded-md">
               <h4 className="text-sm font-semibold mb-1">Notes:</h4>
               <p className="text-sm text-gray-600">{socialData.notes}</p>
             </div>
-          )}
+          )} */}
         </div>
       )}
 
@@ -288,12 +288,12 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
             ))}
           </div>
           
-          {actionsData.notes && (
+          {/* {actionsData.notes && (
             <div className="mt-4 bg-gray-50 p-3 rounded-md">
               <h4 className="text-sm font-semibold mb-1">Notes:</h4>
               <p className="text-sm text-gray-600">{actionsData.notes}</p>
             </div>
-          )}
+          )} */}
         </div>
       )}
 
@@ -374,12 +374,12 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
             ))}
           </div>
           
-          {getsData.notes && (
+          {/* {getsData.notes && (
             <div className="mt-4 bg-gray-50 p-3 rounded-md">
               <h4 className="text-sm font-semibold mb-1">Notes:</h4>
               <p className="text-sm text-gray-600">{getsData.notes}</p>
             </div>
-          )}
+          )} */}
         </div>
       )}
 
@@ -460,12 +460,12 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
             ))}
           </div>
           
-          {environmentData.notes && (
+          {/* {environmentData.notes && (
             <div className="mt-4 bg-gray-50 p-3 rounded-md">
               <h4 className="text-sm font-semibold mb-1">Notes:</h4>
               <p className="text-sm text-gray-600">{environmentData.notes}</p>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>
