@@ -63,7 +63,7 @@ function FourBoxDesk({ socialData, actionsData, getsData, environmentData }) {
         <div className="flex pl-4">
           <button className="" onClick={() => setShowSocialElements(!showSocialElements)}>
             <Image
-              src="/area-deep-dive/magnify-icon.svg"
+              src="/area-deep-dive/arrow-up-icon.svg"
               width={40}
               height={40}
               alt="Magnify Icon"
@@ -155,7 +155,7 @@ function FourBoxDesk({ socialData, actionsData, getsData, environmentData }) {
         <div className="flex pl-4">
           <button className="" onClick={() => setShowActionsElements(!showActionsElements)}>
             <Image
-              src="/area-deep-dive/magnify-icon.svg"
+              src="/area-deep-dive/arrow-up-icon.svg"
               width={40}
               height={40}
               alt="Magnify Icon"
@@ -241,7 +241,7 @@ function FourBoxDesk({ socialData, actionsData, getsData, environmentData }) {
         <div className="flex pl-4">
           <button className="" onClick={() => setShowGetsElements(!showGetsElements)}>
             <Image
-              src="/area-deep-dive/magnify-icon.svg"
+              src="/area-deep-dive/arrow-up-icon.svg"
               width={40}
               height={40}
               alt="Magnify Icon"
@@ -327,7 +327,7 @@ function FourBoxDesk({ socialData, actionsData, getsData, environmentData }) {
         <div className="flex pl-4">
           <button className="" onClick={() => setShowEnvironmentElements(!showEnvironmentElements)}>
             <Image
-              src="/area-deep-dive/magnify-icon.svg"
+              src="/area-deep-dive/arrow-up-icon.svg"
               width={40}
               height={40}
               alt="Magnify Icon"

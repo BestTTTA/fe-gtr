@@ -25,7 +25,6 @@ export default function AreaDeepDive() {
   if (loading) {
     return (
       <div className="flex h-dvh py-[32px] px-[16px] flex-col bg-[#F0F2F5] overflow-y-auto">
-        <h1 className="text-[24px] font-bold">Area Deep Dive</h1>
         <div className="flex justify-center items-center h-[50vh]">
           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#C6B06A]"></div>
         </div>
@@ -38,45 +37,14 @@ export default function AreaDeepDive() {
 
   return (
     <div className="flex h-dvh py-[32px] px-[16px] flex-col bg-[#F0F2F5] overflow-y-auto">
-      <h1 className="text-[24px] font-bold">Area Deep Dive</h1>
-      <div className="flex flex-col md:flex md:flex-row md:text-sm md:gap-1 gap-2 mt-2">
-        <p className="flex items-center gap-2">
-          Click on
-          <Image
-            src="/area-deep-dive/star-icon.svg"
-            width={17}
-            height={17}
-            alt="Picture of the author"
-          />
-          to zoom in on the area
-        </p>
-        <p className="flex items-center">
-          <Image
-            src="/area-deep-dive/star-icon.svg"
-            width={17}
-            height={17}
-            alt="Picture of the author"
-          />
-          = biggest influencer to energy flow
-        </p>
-        <p className="flex items-center">
-          <Image
-            src="/area-deep-dive/star-icon.svg"
-            width={17}
-            height={17}
-            alt="Picture of the author"
-          />
-          = biggest influencer to energy blockage
-        </p>
-      </div>
+      
 
       {/* GTR Score Card */}
       <div className="mt-6 bg-white md:rounded-[16px] rounded-[40px] p-8 shadow-sm">
-        <h2 className="text-xl font-bold mb-4">GTR Score</h2>
-        {/* Total GTR Score */}
+        <h2 className="text-xl font-bold mb-4">GTR</h2>
         <div className="md:hidden mb-6 mt-8">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-gray-700 text-[14px]">Total GTR Score</span>
+            <span className="text-gray-700 text-[14px]">Total GTR</span>
             <div className="flex gap-2">
               <button className="p-1">
                 <Image
@@ -115,14 +83,14 @@ export default function AreaDeepDive() {
 
         <div className="hidden md:flex items-center">
           <span className="text-gray-700 text-[14px] text-nowrap p-4">
-            Total GTR Score
+            Total GTR
           </span>
           <div className="w-full flex bg-[#B60A06] rounded-full h-[28px]">
             <div 
-              className="bg-[#C6B06A] rounded-l-full"
+              className="bg-[#C6B06A] rounded-l-full "
               style={{ width: `${mainGtrScore}%` }}
             >
-              <span className="text-white font-medium text-sm px-2">
+              <span className="text-white font-medium text-sm pr-2 h-full items-center w-full flex justify-end">
                 {mainGtrScore}%
               </span>
             </div>

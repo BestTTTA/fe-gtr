@@ -70,7 +70,6 @@ const ApexLineChart = () => {
           formattedDates[formattedDates.length - 1] = `Today ${formattedDates[formattedDates.length - 1]}`;
         }
 
-        // Get GTR scores
         const scores = historyData.map(item => item.gtr);
 
         // Update chart data

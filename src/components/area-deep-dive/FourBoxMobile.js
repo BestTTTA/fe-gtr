@@ -36,10 +36,10 @@ export default function FourBoxMobile({ socialData, actionsData, getsData, envir
           <div className="flex gap-2">
             <button className="p-1" onClick={() => setShowSocialElements(!showSocialElements)}>
               <Image
-                src="/area-deep-dive/magnify-icon.svg"
+                src="/area-deep-dive/arrow-up-icon.svg"
                 width={40}
                 height={40}
-                alt="Magnify icon"
+                alt="arrow-up icon"
               />
             </button>
             {/* <button className="p-1" onClick={() => setSocialExpanded(!socialExpanded)}>
@@ -111,10 +111,10 @@ export default function FourBoxMobile({ socialData, actionsData, getsData, envir
           <div className="flex gap-2">
             <button className="p-1" onClick={() => setShowActionsElements(!showActionsElements)}>
               <Image
-                src="/area-deep-dive/magnify-icon.svg"
+                src="/area-deep-dive/arrow-up-icon.svg"
                 width={40}
                 height={40}
-                alt="Magnify icon"
+                alt="arrow-up icon"
               />
             </button>
             {/* <button className="p-1" onClick={() => setActionsExpanded(!actionsExpanded)}>
@@ -186,10 +186,10 @@ export default function FourBoxMobile({ socialData, actionsData, getsData, envir
           <div className="flex gap-2">
             <button className="p-1" onClick={() => setShowGetsElements(!showGetsElements)}>
               <Image
-                src="/area-deep-dive/magnify-icon.svg"
+                src="/area-deep-dive/arrow-up-icon.svg"
                 width={40}
                 height={40}
-                alt="Magnify icon"
+                alt="arrow-up icon"
               />
             </button>
             {/* <button className="p-1" onClick={() => setGetsExpanded(!getsExpanded)}>
@@ -261,10 +261,10 @@ export default function FourBoxMobile({ socialData, actionsData, getsData, envir
           <div className="flex gap-2">
             <button className="p-1" onClick={() => setShowEnvironmentElements(!showEnvironmentElements)}>
               <Image
-                src="/area-deep-dive/magnify-icon.svg"
+                src="/area-deep-dive/arrow-up-icon.svg"
                 width={40}
                 height={40}
-                alt="Magnify icon"
+                alt="arrow-up icon"
               />
             </button>
             {/* <button className="p-1" onClick={() => setEnvironmentExpanded(!environmentExpanded)}>

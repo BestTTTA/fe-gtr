@@ -1,7 +1,7 @@
 
 export default function Social() {
   return (
-    <div>
+    <div className="h-screen bg-[#F3F4F6]">
       
     </div>
   )

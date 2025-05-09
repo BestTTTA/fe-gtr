@@ -3,8 +3,7 @@ import { useState } from "react";
 
 export default function SelfBoxDesk({ areaData }) {
   const [showElements, setShowElements] = useState(false);
-  
-  // Get the self GTR score from the passed data
+
   const selfScore = areaData?.gtr ? parseFloat(areaData.gtr).toFixed(1) : "0.0";
 
   // Function to format element name for display
@@ -32,10 +31,10 @@ export default function SelfBoxDesk({ areaData }) {
         <div className="flex gap-2 ml-2">
           <button className="p-1" onClick={() => setShowElements(!showElements)}>
             <Image
-              src="/area-deep-dive/magnify-icon.svg"
+              src="/area-deep-dive/arrow-up-icon.svg"
               width={40}
               height={40}
-              alt="Magnify icon"
+              alt="Arrow icon"
             />
           </button>
         </div>

@@ -10,7 +10,8 @@ import gtrData from "../dashboard/gtr.json";
 
 function Menu() {
   const pathname = usePathname();
-  const { isOpen, setIsOpen, activeTab, setActiveTab } = useContext(NavbarContext);
+  const { isOpen, setIsOpen, activeTab, setActiveTab } =
+    useContext(NavbarContext);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [gtrScore, setGtrScore] = useState(0);
@@ -22,8 +23,7 @@ function Menu() {
         setLoading(true);
         const response = await userService.getProfile();
         setUserData(response.data);
-        
-        // Get GTR score from the JSON data
+
         if (gtrData && gtrData.data && gtrData.data.gtr) {
           setGtrScore(gtrData.data.gtr);
         }
@@ -76,8 +76,9 @@ function Menu() {
       )}
 
       <div
-        className={`fixed z-50 min-h-screen text-nowrap top-0 left-0 md:static transition-all duration-300 flex flex-col bg-[#0C2955] overflow-hidden ${isOpen ? "w-[240px] p-4 md:p-4" : "w-0 md:w-[240px]"
-          }`}
+        className={`fixed z-50 min-h-screen text-nowrap top-0 left-0 md:static transition-all duration-300 flex flex-col bg-[#0C2955] overflow-hidden ${
+          isOpen ? "w-[240px] p-4 md:p-4" : "w-0 md:w-[240px]"
+        }`}
       >
         {isOpen && (
           <>
@@ -100,7 +101,9 @@ function Menu() {
                       />
                     ) : (
                       <div className="w-[48px] h-[48px] rounded-full bg-gray-600 flex items-center justify-center">
-                        <span className="text-white text-sm">{getUserInitials()}</span>
+                        <span className="text-white text-sm">
+                          {getUserInitials()}
+                        </span>
                       </div>
                     )}
                     <p className="text-sm font-semibold text-white">
@@ -122,7 +125,7 @@ function Menu() {
               {/* Progress Bar - Updated to use GTR score */}
               <div className="flex w-full items-center justify-between">
                 <div className="relative w-full h-[18px] bg-[#B60A06] rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full border-r-2 border-[#0C2955] flex items-center justify-end pr-1 text-white text-[10.5px] font-medium"
                     style={{ width: `${gtrScore || 0}%` }}
                   >
@@ -136,10 +139,11 @@ function Menu() {
             <div className="pt-[32px] flex flex-col">
               <Link
                 href="/your-gtr/dashboard"
-                className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${pathname === "/your-gtr/dashboard"
+                className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
+                  pathname === "/your-gtr/dashboard"
                     ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium"
                     : "text-[#C1C6DA]"
-                  }`}
+                }`}
               >
                 <Image
                   src="/navbar-icons/function-line.png"
@@ -152,8 +156,46 @@ function Menu() {
                 />
                 Dashboard
               </Link>
+              <Link
+                href="/your-gtr/insights"
+                className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
+                  pathname === "/your-gtr/insights"
+                    ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium"
+                    : "text-[#C1C6DA]"
+                }`}
+              >
+                <Image
+                  src="/dashboard/insights.svg"
+                  width={24}
+                  height={24}
+                  alt="Dashboard"
+                  className={
+                    pathname === "/your-gtr/insights" ? "filter invert" : ""
+                  }
+                />
+                Insights
+              </Link>
+              <Link
+                href="/your-gtr/dashboard"
+                className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
+                  pathname === "/your-gtr/c"
+                    ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium"
+                    : "text-[#C1C6DA]"
+                }`}
+              >
+                <Image
+                  src="/dashboard/development.svg"
+                  width={24}
+                  height={24}
+                  alt="Dashboard"
+                  className={
+                    pathname === "/your-gtr/development" ? "filter invert" : ""
+                  }
+                />
+                Development
+              </Link>
 
-              <div className="w-full flex justify-center">
+              {/* <div className="w-full flex justify-center">
                 <div className="w-[176px] h-[1px] bg-[#788499]" />
               </div>
 
@@ -210,14 +252,18 @@ function Menu() {
                   />
                   {label}
                 </Link>
-              ))}
+              ))} */}
 
-              {pathname === '/users' && (
+              {pathname === "/users" && (
                 <div className="md:hidden">
                   <div className="mb-6">
                     <button
-                      className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] ${activeTab === 'profile' ? 'text-white' : 'text-[#C1C6DA]'}`}
-                      onClick={() => handleTabChange('profile')}
+                      className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] ${
+                        activeTab === "profile"
+                          ? "text-white"
+                          : "text-[#C1C6DA]"
+                      }`}
+                      onClick={() => handleTabChange("profile")}
                     >
                       <svg
                         width="24"
@@ -232,8 +278,12 @@ function Menu() {
                       User Profile
                     </button>
                     <button
-                      className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] ${activeTab === 'billing' ? 'text-white' : 'text-[#C1C6DA]'}`}
-                      onClick={() => handleTabChange('billing')}
+                      className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] ${
+                        activeTab === "billing"
+                          ? "text-white"
+                          : "text-[#C1C6DA]"
+                      }`}
+                      onClick={() => handleTabChange("billing")}
                     >
                       <svg
                         width="24"
