@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
+function FiveBoxDesk({ selfData, socialData, actionsData, getsData, environmentData }) {
   // State for expanded sections
   const [selfExpanded, setSelfExpanded] = useState(true);
   const [socialExpanded, setSocialExpanded] = useState(true);
@@ -17,7 +17,7 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
   const [showEnvironmentElements, setShowEnvironmentElements] = useState(false);
   
   // Get scores from the passed data or use defaults
-  const selfScore = 77.5; // Default self score
+  const selfScore = selfData?.gtr ? parseFloat(selfData.gtr).toFixed(1) : "0.0";
   const socialScore = socialData?.gtr ? parseFloat(socialData.gtr).toFixed(1) : "90.4";
   const actionsScore = actionsData?.gtr ? parseFloat(actionsData.gtr).toFixed(1) : "47.0";
   const getsScore = getsData?.gtr ? parseFloat(getsData.gtr).toFixed(1) : "47.0";
@@ -37,7 +37,7 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
       
       {/* Self Section */}
       <div className="flex pl-26 w-full items-center hover:bg-[#F0F1F5] py-6 rounded-[24px]">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 pl-[39px]">
           <Image
             src="/dashboard/self-icon.png"
             width={40}
@@ -46,14 +46,14 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
           />
           <span className="text-gray-700">Self</span>
         </div>
-        <div className="flex w-full pl-17">
+        <div className="flex w-full pl-21">
           {selfExpanded && (
             <div className="flex w-full h-[28px] bg-[#B60A06] rounded-full">
               <div
                 className="flex justify-end items-center pr-2 text-white bg-[#C6B06A] rounded-l-full"
                 style={{ width: `${selfScore}%` }}
               >
-                {selfScore}
+                {selfScore}%
               </div>
             </div>
           )}
@@ -71,44 +71,34 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
       </div>
 
       {/* Self Elements */}
-      {showSelfElements && (
+      {showSelfElements && selfData?.elements && (
         <div className="ml-24 mb-4 pl-6 border-l-2 border-gray-200">
           <div className="grid grid-cols-1 gap-3">
-            <div className="flex items-center">
-              <div className="flex items-center w-1/4">
-                <span className="text-gray-700">Self Acceptance</span>
-              </div>
-              <div className="w-3/4 relative h-[20px] bg-[#B60A06] rounded-full overflow-hidden ml-4">
-                <div
-                  className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full flex items-center justify-end"
-                  style={{ width: `24%` }}
-                >
-                  <span className="absolute text-white font-medium text-xs px-2">
-                    24%
+            {selfData.elements.map((element, index) => (
+              <div key={index} className="flex items-center">
+                <div className="flex items-center w-1/4">
+                  {element.isHigh && (
+                    <span className="mr-2 text-blue-500 text-lg">●</span>
+                  )}
+                  {element.isLow && (
+                    <span className="mr-2 text-red-500 text-lg">●</span>
+                  )}
+                  <span className="text-gray-700">
+                    {formatElementName(element.element)}
                   </span>
                 </div>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <div className="flex items-center w-1/4">
-                <span className="text-gray-700">Sense Of Purpose</span>
-              </div>
-              <div className="w-3/4 relative h-[20px] bg-[#B60A06] rounded-full overflow-hidden ml-4">
-                <div
-                  className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full flex items-center justify-end"
-                  style={{ width: `97%` }}
-                >
-                  <span className="absolute text-white font-medium text-xs px-2">
-                    97%
-                  </span>
+                <div className="w-3/4 relative h-[20px] bg-[#B60A06] rounded-full overflow-hidden ml-4">
+                  <div
+                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full flex items-center justify-end"
+                    style={{ width: `${element.gtr}%` }}
+                  >
+                    <span className="absolute text-white font-medium text-xs px-2">
+                      {element.gtr}%
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          
-          <div className="mt-4 bg-gray-50 p-3 rounded-md">
-            <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-            <p className="text-sm text-gray-600">Focus on self-acceptance to improve overall well-being.</p>
+            ))}
           </div>
         </div>
       )}
@@ -137,7 +127,7 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
                 className="flex justify-end items-center pr-2 text-white bg-[#C6B06A] rounded-l-full"
                 style={{ width: `${socialScore}%` }}
               >
-                {socialScore}
+                {socialScore}%
               </div>
             </div>
           )}
@@ -195,13 +185,6 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
               </div>
             ))}
           </div>
-          
-          {socialData.notes && (
-            <div className="mt-4 bg-gray-50 p-3 rounded-md">
-              <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-              <p className="text-sm text-gray-600">{socialData.notes}</p>
-            </div>
-          )}
         </div>
       )}
 
@@ -229,7 +212,7 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
                 className="flex justify-end items-center pr-2 text-white bg-[#C6B06A] rounded-l-full"
                 style={{ width: `${actionsScore}%` }}
               >
-                {actionsScore}
+                {actionsScore}%
               </div>
             </div>
           )}
@@ -287,13 +270,6 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
               </div>
             ))}
           </div>
-          
-          {actionsData.notes && (
-            <div className="mt-4 bg-gray-50 p-3 rounded-md">
-              <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-              <p className="text-sm text-gray-600">{actionsData.notes}</p>
-            </div>
-          )}
         </div>
       )}
 
@@ -315,7 +291,7 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
                 className="flex justify-end items-center pr-2 text-white bg-[#C6B06A] rounded-l-full"
                 style={{ width: `${getsScore}%` }}
               >
-                {getsScore}
+                {getsScore}%
               </div>
             </div>
           )}
@@ -373,13 +349,6 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
               </div>
             ))}
           </div>
-          
-          {getsData.notes && (
-            <div className="mt-4 bg-gray-50 p-3 rounded-md">
-              <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-              <p className="text-sm text-gray-600">{getsData.notes}</p>
-            </div>
-          )}
         </div>
       )}
 
@@ -401,7 +370,7 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
                 className="flex justify-end items-center pr-2 text-white bg-[#C6B06A] rounded-l-full"
                 style={{ width: `${environmentScore}%` }}
               >
-                {environmentScore}
+                {environmentScore}%
               </div>
             </div>
           )}
@@ -459,13 +428,6 @@ function FiveBoxDesk({ socialData, actionsData, getsData, environmentData }) {
               </div>
             ))}
           </div>
-          
-          {environmentData.notes && (
-            <div className="mt-4 bg-gray-50 p-3 rounded-md">
-              <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-              <p className="text-sm text-gray-600">{environmentData.notes}</p>
-            </div>
-          )}
         </div>
       )}
     </div>

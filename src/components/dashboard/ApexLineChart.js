@@ -159,14 +159,6 @@ const ApexLineChart = () => {
             width="100%"
           />
         </div>
-        <div className="flex flex-col items-start justify-center p-[8px]">
-          <h1 className="text-nowrap font-bold text-[18px] mb-[8px]">
-            Static text to explain this section
-          </h1>
-          <p className=" text-nowrap text-[14px] font-normal mb-[32px]">
-            Additional description
-          </p>
-        </div>
       </div>
     </>
   );

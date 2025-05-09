@@ -29,7 +29,7 @@ function GtrScore() {
   if (loading) {
     return (
       <div className="flex flex-col gap-[8px] p-[16px] pb-[44px] pt-[30px] w-full rounded-[40px] bg-white">
-        <h1 className="text-[18px] font-bold">GTR Score</h1>
+        <h1 className="text-[18px] font-bold">GTR</h1>
         <div className="flex justify-center items-center py-8">
           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#C6B06A]"></div>
         </div>
@@ -41,7 +41,7 @@ function GtrScore() {
   if (error || !data) {
     return (
       <div className="flex flex-col gap-[8px] p-[16px] pb-[44px] pt-[30px] w-full rounded-[40px] bg-white">
-        <h1 className="text-[18px] font-bold">GTR Score</h1>
+        <h1 className="text-[18px] font-bold">GTR</h1>
         <div className="text-red-500 py-4">
           {error || "No GTR data available"}
         </div>
@@ -66,7 +66,7 @@ function GtrScore() {
             className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full border-r-2 border-white flex items-center justify-end pr-1 text-white text-[20px] font-medium"
             style={{ width: `${mainGtrScore}%` }}
           >
-            ${mainGtrScore}
+            {mainGtrScore}%
           </div>
         </div>
       </div>

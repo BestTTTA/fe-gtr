@@ -8,7 +8,7 @@ export default function page() {
             <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                 <div className="py-8 sm:py-12 md:py-16 flex flex-col items-center">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black font-bold">Create Account Success!</h1>
-                    <p className="text-lg sm:text-xl text-black text-center py-2 sm:py-4 font-bold">Welcome to Good Time Ratio</p>
+                    <p className="text-lg sm:text-xl text-black text-center py-2 sm:py-4 font-bold">Welcome to Good Time</p>
                     <p className="text-sm sm:text-md text-black text-center">Unlock your self-assessment capabilities.</p>
                     <p className="text-sm sm:text-md text-black text-center mb-6 sm:mb-8">Inform users to understand what you can do with portal and quiz</p>
 

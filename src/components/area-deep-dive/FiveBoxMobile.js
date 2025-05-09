@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function FiveBoxMobile({ socialData, actionsData, getsData, environmentData }) {
+export default function FiveBoxMobile({ selfData, socialData, actionsData, getsData, environmentData }) {
   const [selfExpanded, setSelfExpanded] = useState(true);
   const [socialExpanded, setSocialExpanded] = useState(true);
   const [actionsExpanded, setActionsExpanded] = useState(true);
@@ -15,7 +15,7 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
   const [showEnvironmentElements, setShowEnvironmentElements] = useState(false);
   
   // Get scores from the passed data
-  const selfScore = 77.5; // Default self score
+  const selfScore = selfData?.gtr ? parseFloat(selfData.gtr).toFixed(1) : "0.0";
   const socialScore = socialData?.gtr ? parseFloat(socialData.gtr).toFixed(1) : "0.0";
   const actionsScore = actionsData?.gtr ? parseFloat(actionsData.gtr).toFixed(1) : "0.0";
   const getsScore = getsData?.gtr ? parseFloat(getsData.gtr).toFixed(1) : "0.0";
@@ -32,6 +32,7 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
 
   return (
     <div className="md:hidden mt-8">
+      
       {/* Self */}
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
@@ -61,43 +62,33 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
         )}
         
         {/* Self Elements */}
-        {showSelfElements && (
+        {showSelfElements && selfData?.elements && (
           <div className="mt-4 pl-4 border-l-2 border-gray-200">
-            <div className="mb-4">
-              <div className="flex justify-between items-center mb-1">
-                <div className="flex items-center">
-                  <span className="text-gray-700">Self Acceptance</span>
+            {selfData.elements.map((element, index) => (
+              <div key={index} className="mb-4">
+                <div className="flex justify-between items-center mb-1">
+                  <div className="flex items-center">
+                    {element.isHigh && (
+                      <span className="mr-2 text-blue-500">●</span>
+                    )}
+                    {element.isLow && (
+                      <span className="mr-2 text-red-500">●</span>
+                    )}
+                    <span className="text-gray-700">
+                      {formatElementName(element.element)}
+                    </span>
+                  </div>
+                  <span className="text-gray-700 font-medium">{element.gtr}%</span>
                 </div>
-                <span className="text-gray-700 font-medium">24%</span>
-              </div>
-              <div className="relative h-[16px] bg-[#B60A06] rounded-full overflow-hidden">
-                <div
-                  className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                  style={{ width: `24%` }}
-                >
-                </div>
-              </div>
-            </div>
-            <div className="mb-4">
-              <div className="flex justify-between items-center mb-1">
-                <div className="flex items-center">
-                  <span className="text-gray-700">Sense Of Purpose</span>
-                </div>
-                <span className="text-gray-700 font-medium">97%</span>
-              </div>
-              <div className="relative h-[16px] bg-[#B60A06] rounded-full overflow-hidden">
-                <div
-                  className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                  style={{ width: `97%` }}
-                >
+                <div className="relative h-[16px] bg-[#B60A06] rounded-full overflow-hidden">
+                  <div
+                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
+                    style={{ width: `${element.gtr}%` }}
+                  >
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
-              <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-              <p className="text-sm text-gray-600">Focus on self-acceptance to improve overall well-being.</p>
-            </div>
+            ))}
           </div>
         )}
       </div>
@@ -115,14 +106,6 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 alt="arrow-up icon"
               />
             </button>
-            {/* <button className="p-1" onClick={() => setSocialExpanded(!socialExpanded)}>
-              <Image
-                src="/area-deep-dive/arrow-up-icon.svg"
-                width={25}
-                height={25}
-                alt="Arrow icon"
-              />
-            </button> */}
           </div>
         </div>
         {socialExpanded && (
@@ -166,13 +149,6 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 </div>
               </div>
             ))}
-            
-            {socialData.notes && (
-              <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
-                <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-                <p className="text-sm text-gray-600">{socialData.notes}</p>
-              </div>
-            )}
           </div>
         )}
       </div>
@@ -190,14 +166,6 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 alt="arrow-up icon"
               />
             </button>
-            {/* <button className="p-1" onClick={() => setActionsExpanded(!actionsExpanded)}>
-              <Image
-                src="/area-deep-dive/arrow-up-icon.svg"
-                width={25}
-                height={25}
-                alt="Arrow icon"
-              />
-            </button> */}
           </div>
         </div>
         {actionsExpanded && (
@@ -241,13 +209,6 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 </div>
               </div>
             ))}
-            
-            {actionsData.notes && (
-              <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
-                <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-                <p className="text-sm text-gray-600">{actionsData.notes}</p>
-              </div>
-            )}
           </div>
         )}
       </div>
@@ -265,14 +226,6 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 alt="arrow-up icon"
               />
             </button>
-            {/* <button className="p-1" onClick={() => setGetsExpanded(!getsExpanded)}>
-              <Image
-                src="/area-deep-dive/arrow-up-icon.svg"
-                width={25}
-                height={25}
-                alt="Arrow icon"
-              />
-            </button> */}
           </div>
         </div>
         {getsExpanded && (
@@ -316,13 +269,6 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 </div>
               </div>
             ))}
-            
-            {getsData.notes && (
-              <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
-                <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-                <p className="text-sm text-gray-600">{getsData.notes}</p>
-              </div>
-            )}
           </div>
         )}
       </div>
@@ -340,14 +286,6 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 alt="arrow-up icon"
               />
             </button>
-            {/* <button className="p-1" onClick={() => setEnvironmentExpanded(!environmentExpanded)}>
-              <Image
-                src="/area-deep-dive/arrow-up-icon.svg"
-                width={25}
-                height={25}
-                alt="Arrow icon"
-              />
-            </button> */}
           </div>
         </div>
         {environmentExpanded && (
@@ -391,13 +329,6 @@ export default function FiveBoxMobile({ socialData, actionsData, getsData, envir
                 </div>
               </div>
             ))}
-            
-            {environmentData.notes && (
-              <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
-                <h4 className="text-sm font-semibold mb-1">Notes:</h4>
-                <p className="text-sm text-gray-600">{environmentData.notes}</p>
-              </div>
-            )}
           </div>
         )}
       </div>

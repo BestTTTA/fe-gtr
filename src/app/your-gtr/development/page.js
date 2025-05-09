@@ -40,7 +40,7 @@ function SelfCard() {
               </div>
 
               <div className="insights-content mt-6">
-                <h3 className="font-semibold mb-2">The Biggest Energy-Flow</h3>
+                <h3 className="font-semibold mb-2">Keep</h3>
                 <p className="text-sm text-gray-500 mb-4">
                   Your main energy sources come from [Element with the highest
                   GTR] and [Element with the second highest GTR]. Continuing to
@@ -60,7 +60,7 @@ function SelfCard() {
               </div>
 
               <div className="insights-content mt-6">
-                <h3 className="font-semibold mb-2">Energy-Flow</h3>
+                <h3 className="font-semibold mb-2">Lift</h3>
                 <p className="text-sm text-gray-500 mb-4">
                   Meanwhile, [Element with the third highest GTR] and [Element
                   with the fourth highest GTR] hold great growth potential. With
@@ -80,7 +80,7 @@ function SelfCard() {
               </div>
 
               <div className="insights-content mt-6 border-b border-[#DADCE1] pb-4">
-                <h3 className="font-semibold mb-2">Energy Blockage</h3>
+                <h3 className="font-semibold mb-2">Reduce</h3>
                 <p className="text-sm text-gray-500 mb-4">
                   Currently, [Element with the lowest GTR] may affect your
                   self-confidence the most. You might consider whether it’s
@@ -185,7 +185,7 @@ function SelfCard() {
                   </div>
                   <div className="flex flex-col w-full">
                     <h3 className="font-semibold mb-2">
-                      The Biggest Energy-Flow
+                      Keep
                     </h3>
                     <p className="text-sm text-gray-500 mb-4">
                       Your main energy sources come from [Element with the
@@ -208,7 +208,7 @@ function SelfCard() {
                     </div>
                   </div>
                   <div className="flex flex-col w-full">
-                    <h3 className="font-semibold mb-2">Energy-Flow</h3>
+                    <h3 className="font-semibold mb-2">Lift</h3>
                     <p className="text-sm text-gray-500 mb-4">
                       Meanwhile, [Element with the third highest GTR] and
                       [Element with the fourth highest GTR] hold great growth
@@ -230,7 +230,7 @@ function SelfCard() {
                     </div>
                   </div>
                   <div className="flex flex-col w-full">
-                    <h3 className="font-semibold mb-2">Energy Blockage</h3>
+                    <h3 className="font-semibold mb-2">Reduce</h3>
                     <p className="text-sm text-gray-500 mb-4">
                       Currently, [Element with the lowest GTR] may affect your
                       self-confidence the most. You might consider whether it’s

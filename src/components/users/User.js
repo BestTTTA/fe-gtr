@@ -116,7 +116,7 @@ function User() {
           <h3 className="font-bold mb-4">Personal Information</h3>
           <div className='flex gap-4'>
             <div className='space-y-4'>
-              {['Year of birth', 'Gender', 'Nationality', 'Living'].map((label) => (
+              {['Date of birth', 'Gender', 'Nationality', 'Living'].map((label) => (
                 <p key={label} className='text-sm'>{label}</p>
               ))}
             </div>

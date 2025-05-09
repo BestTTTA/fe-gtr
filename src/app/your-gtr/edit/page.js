@@ -252,7 +252,7 @@ export default function EditProfilePage() {
                                             type="number"
                                             id="yearOfBirth"
                                             name="yearOfBirth"
-                                            placeholder="Enter year of birth"
+                                            placeholder="Enter date of birth"
                                             className="w-full p-2 md:p-2.5 lg:p-3 text-xs md:text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                             value={formData.yearOfBirth}
                                             onChange={handleChange}

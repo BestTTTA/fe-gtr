@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import SelfBoxMobile from "@/components/area-deep-dive/SelfBoxMobile";
 import SelfBoxDesk from "@/components/area-deep-dive/SelfBoxDesk";
-import FourBoxMobile from "@/components/area-deep-dive/FourBoxMobile";
-import FourBoxDesk from "@/components/area-deep-dive/FourBoxDesk";
+import FiveBoxMobile from "@/components/area-deep-dive/FiveBoxMobile";
+import FiveBoxDesk from "@/components/area-deep-dive/FiveBoxDesk";
 import gtrData from "@/components/dashboard/gtr.json";
 
 export default function AreaDeepDive() {
@@ -97,18 +97,20 @@ export default function AreaDeepDive() {
           </div>
         </div>
 
-        {/* Self */}
+        {/* Self
         <SelfBoxMobile areaData={data?.areas?.self} />
-        <SelfBoxDesk areaData={data?.areas?.self} />
+        <SelfBoxDesk areaData={data?.areas?.self} /> */}
 
-        {/* Four */}
-        <FourBoxMobile 
+        {/* Five */}
+        <FiveBoxMobile 
+          selfData={data?.areas?.self}
           socialData={data?.areas?.social}
           actionsData={data?.areas?.actions}
           getsData={data?.areas?.gets}
           environmentData={data?.areas?.environment}
         />
-        <FourBoxDesk 
+        <FiveBoxDesk 
+          selfData={data?.areas?.self}
           socialData={data?.areas?.social}
           actionsData={data?.areas?.actions}
           getsData={data?.areas?.gets}
