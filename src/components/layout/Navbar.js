@@ -495,55 +495,106 @@ function Navbar() {
           </>
         )}
 
-        {/* Insights Layout */}
-        {(pathname === "/your-gtr/insights" || pathname.includes("/insights/")) && (
+        {pathname === "/your-gtr/development" && (
           <>
-          <div className="flex items-center">
-            <div className="flex rounded-full overflow-hidden">
-              <button
-                className={`px-4 py-1 text-sm ${
-                  viewMode === "D"
-                    ? "bg-[#ff9933] text-black"
-                    : "bg-[#c1c6da] text-white"
-                } rounded-l-full`}
-                onClick={() => handleViewModeChange("D")}
-              >
-                D
-              </button>
-              <button
-                className={`px-4 py-1 text-sm ${
-                  viewMode === "W"
-                    ? "bg-[#ff9933] text-black"
-                    : "bg-[#c1c6da] text-white"
-                }`}
-                onClick={() => handleViewModeChange("W")}
-              >
-                W
-              </button>
-              <button
-                className={`px-4 py-1 text-sm ${
-                  viewMode === "M"
-                    ? "bg-[#ff9933] text-black"
-                    : "bg-[#c1c6da] text-white"
-                }`}
-                onClick={() => handleViewModeChange("M")}
-              >
-                M
-              </button>
-              <button
-                className={`px-4 py-1 text-sm ${
-                  viewMode === "Y"
-                    ? "bg-[#ff9933] text-black"
-                    : "bg-[#c1c6da] text-white"
-                } rounded-r-full`}
-                onClick={() => handleViewModeChange("Y")}
-              >
-                Y
-              </button>
+            <div className="flex items-center">
+              <div className="flex rounded-full overflow-hidden">
+                <button
+                  className={`px-4 py-1 text-sm ${
+                    viewMode === "D"
+                      ? "bg-[#ff9933] text-black"
+                      : "bg-[#c1c6da] text-white"
+                  } rounded-l-full`}
+                  onClick={() => handleViewModeChange("D")}
+                >
+                  D
+                </button>
+                <button
+                  className={`px-4 py-1 text-sm ${
+                    viewMode === "W"
+                      ? "bg-[#ff9933] text-black"
+                      : "bg-[#c1c6da] text-white"
+                  }`}
+                  onClick={() => handleViewModeChange("W")}
+                >
+                  W
+                </button>
+                <button
+                  className={`px-4 py-1 text-sm ${
+                    viewMode === "M"
+                      ? "bg-[#ff9933] text-black"
+                      : "bg-[#c1c6da] text-white"
+                  }`}
+                  onClick={() => handleViewModeChange("M")}
+                >
+                  M
+                </button>
+                <button
+                  className={`px-4 py-1 text-sm ${
+                    viewMode === "Y"
+                      ? "bg-[#ff9933] text-black"
+                      : "bg-[#c1c6da] text-white"
+                  } rounded-r-full`}
+                  onClick={() => handleViewModeChange("Y")}
+                >
+                  Y
+                </button>
+              </div>
             </div>
-          </div>
-          {renderDateRangeDisplay()}
-        </>
+            {renderDateRangeDisplay()}
+          </>
+        )}
+
+        {/* Insights Layout */}
+        {(pathname === "/your-gtr/insights" ||
+          pathname.includes("/insights/")) && (
+          <>
+            <div className="flex items-center">
+              <div className="flex rounded-full overflow-hidden">
+                <button
+                  className={`px-4 py-1 text-sm ${
+                    viewMode === "D"
+                      ? "bg-[#ff9933] text-black"
+                      : "bg-[#c1c6da] text-white"
+                  } rounded-l-full`}
+                  onClick={() => handleViewModeChange("D")}
+                >
+                  D
+                </button>
+                <button
+                  className={`px-4 py-1 text-sm ${
+                    viewMode === "W"
+                      ? "bg-[#ff9933] text-black"
+                      : "bg-[#c1c6da] text-white"
+                  }`}
+                  onClick={() => handleViewModeChange("W")}
+                >
+                  W
+                </button>
+                <button
+                  className={`px-4 py-1 text-sm ${
+                    viewMode === "M"
+                      ? "bg-[#ff9933] text-black"
+                      : "bg-[#c1c6da] text-white"
+                  }`}
+                  onClick={() => handleViewModeChange("M")}
+                >
+                  M
+                </button>
+                <button
+                  className={`px-4 py-1 text-sm ${
+                    viewMode === "Y"
+                      ? "bg-[#ff9933] text-black"
+                      : "bg-[#c1c6da] text-white"
+                  } rounded-r-full`}
+                  onClick={() => handleViewModeChange("Y")}
+                >
+                  Y
+                </button>
+              </div>
+            </div>
+            {renderDateRangeDisplay()}
+          </>
         )}
 
         <div className="w-full flex justify-end">

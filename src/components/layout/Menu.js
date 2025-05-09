@@ -176,9 +176,9 @@ function Menu() {
                 Insights
               </Link>
               <Link
-                href="/your-gtr/dashboard"
+                href="/your-gtr/development"
                 className={`flex py-[16px] pl-[16px] pr-[24px] items-center gap-3 text-sm leading-[22.4px] transition-all duration-200 ${
-                  pathname === "/your-gtr/c"
+                  pathname === "/your-gtr/development"
                     ? "text-black bg-[#D6E4FF] rounded-[24px] font-medium"
                     : "text-[#C1C6DA]"
                 }`}
