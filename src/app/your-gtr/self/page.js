@@ -2,6 +2,8 @@ import SelfCard from "@/components/self/SelfCard";
 import KeyInfluencers from "@/components/dashboard/KeyInfluencers";
 import TopEmotions from "@/components/dashboard/TopEmotions";
 import ApexLineChart from "@/components/dashboard/ApexLineChart";
+import { useState } from "react";
+import Image from "next/image";
 
 export default function Self() {
   return (
@@ -23,6 +25,79 @@ export default function Self() {
       <KeyInfluencers />
       <TopEmotions />
       <ApexLineChart />
+
+      <div className="flex flex-col bg-white p-4 rounded-4xl">
+        <div className="reflection-content">
+          <h3 className="font-semibold mb-2">
+            Your personal Self reflection notes
+          </h3>
+          <p className="text-sm text-gray-500 mb-4">
+            These are the notes you made during the assessment. Now that
+            you&apos;ve seen the bigger picture, would you like to add anything?
+          </p>
+
+          <div className="w-full bg-[#F0F2F5] rounded-[24px] p-[32px] flex flex-col justify-center">
+            <h1 className="font-bold">Reflection on my current Self</h1>
+            {/* <p className="text-[16px] mt-4">{reflectionText}</p> */}
+            <p className="text-[16px] mt-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
+              Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
+              nec luctus magna felis sollicitudin mauris. Integer in mauris eu
+              nibh euismod gravida. Duis actellus et risus vulputate vehicula.
+            </p>
+          </div>
+
+          <button
+            className="border rounded-full flex items-center mt-4 px-4 py-2 gap-2"
+            // onClick={() => setIsEditing(true)}
+          >
+            <Image
+              alt="GTR Icon"
+              width={20}
+              height={20}
+              src="/self-insights/edit-icon.svg"
+            />
+            Edit reflection
+          </button>
+        </div>
+
+        {/* <div className="reflection-edit-mode">
+                  <h3 className="font-semibold mb-2">
+                    Your personal Self reflection notes
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-4">
+                    These are the notes you made during the assessment. Now that
+                    you&apos;ve seen the bigger picture, would you like to add
+                    anything?
+                  </p>
+                  <textarea
+                    className="w-full min-h-[200px] text-[16px] border border-gray-300 rounded-[16px] p-4 mt-2"
+                    value={reflectionText}
+                    onChange={(e) => setReflectionText(e.target.value)}
+                  />
+                  <div className="flex gap-4 mt-4">
+                    <button
+                      className="bg-[#F7931E] text-black rounded-full px-6 py-3 font-medium"
+                      onClick={() => setIsEditing(false)}
+                    >
+                      Save edit
+                    </button>
+                    <button
+                      className="border border-gray-300 rounded-full px-6 py-3 font-medium"
+                      onClick={() => setIsEditing(false)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div> */}
+      </div>
     </div>
   );
 }
