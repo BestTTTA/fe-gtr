@@ -1,23 +1,73 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Menu from '@/components/layout/Menu'
 import Navbar from '@/components/layout/Navbar'
+import { userService } from '@/services/userService'
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export default function EditProfilePage() {
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
+    const [error, setError] = useState('');
+    const [profilePicture, setProfilePicture] = useState(null);
+    const [profilePictureUrl, setProfilePictureUrl] = useState('');
+    const fileInputRef = useRef(null);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        birthYear: '',
+        yearOfBirth: '',
         gender: '',
-        nationality: '',
-        region: '',
-        city: '',
+        countryOfOrigin: '',
+        currentCountry: '',
+        currentCity: '',
         termsConsent: true,
         dataPrivacyConsent: true,
         privacyPolicyConsent: true
     })
     const [showDeleteModal, setShowDeleteModal] = useState(false)
+
+    // Fetch user data when component mounts
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                setLoading(true);
+                const response = await userService.getProfile();
+                const userData = response.data;
+
+                // Update form data with user profile information
+                setFormData(prev => ({
+                    ...prev,
+                    name: userData.name || '',
+                    email: userData.email || '',
+                    yearOfBirth: userData.yearOfBirth || '',
+                    gender: userData.gender || '',
+                    countryOfOrigin: userData.countryOfOrigin || '',
+                    currentCountry: userData.currentCountry || '',
+                    currentCity: userData.currentCity || '',
+                    // Load consent values from API
+                    termsConsent: userData.termsConsent !== undefined ? userData.termsConsent : true,
+                    dataPrivacyConsent: userData.dataPrivacyConsent !== undefined ? userData.dataPrivacyConsent : true,
+                    privacyPolicyConsent: userData.privacyPolicyConsent !== undefined ? userData.privacyPolicyConsent : true
+                }));
+
+                // Set profile picture if available
+                if (userData.profilePicture) {
+                    setProfilePictureUrl(userData.profilePicture);
+                }
+            } catch (err) {
+                console.error("Error fetching user profile:", err);
+                setError("Failed to load user profile");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUserProfile();
+    }, []);
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target
         setFormData(prev => ({
@@ -25,19 +75,101 @@ export default function EditProfilePage() {
             [name]: type === 'checkbox' ? checked : value
         }))
     }
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('Form submitted:', formData)
-        // Add API call to save data
+
+    const handleProfilePictureClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setProfilePicture(file);
+            // Create a preview URL
+            const previewUrl = URL.createObjectURL(file);
+            setProfilePictureUrl(previewUrl);
+        }
+    };
+
+    const uploadProfilePicture = async () => {
+        if (!profilePicture) return;
+
+        try {
+            const formData = new FormData();
+            formData.append('profile_picture', profilePicture);
+
+            await userService.updateProfilePicture(formData);
+            console.log('Profile picture updated successfully');
+        } catch (err) {
+            console.error('Error uploading profile picture:', err);
+            setError('Failed to upload profile picture. Please try again.');
+            throw err;
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setSaving(true);
+        setError('');
+
+        try {
+            // Prepare data for API
+            const updateData = {
+                name: formData.name,
+                yearOfBirth: parseInt(formData.yearOfBirth),
+                gender: formData.gender,
+                countryOfOrigin: formData.countryOfOrigin,
+                currentCountry: formData.currentCountry,
+                currentCity: formData.currentCity,
+                // Include consent values in the update data
+                termsConsent: formData.termsConsent,
+                dataPrivacyConsent: formData.dataPrivacyConsent,
+                privacyPolicyConsent: formData.privacyPolicyConsent
+            };
+
+            // Upload profile picture if changed
+            if (profilePicture) {
+                await uploadProfilePicture();
+            }
+
+            // Call API to update user profile
+            await userService.updateProfile(updateData);
+
+            // Redirect to profile page after successful update
+            router.push('/');
+        } catch (err) {
+            console.error('Error updating profile:', err);
+            setError(err.message || 'Failed to update profile. Please try again.');
+        } finally {
+            setSaving(false);
+        }
     }
+
+    // Show loading state
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen bg-gray-50">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading profile...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <>
             <div className="flex ">
                 <div className="bg-gray-50 w-full min-h-screen">
                     <div className="max-w-2xl h-lvh overflow-auto mx-auto w-full px-4 sm:px-6 lg:px-8 mt-4 pb-8">
                         <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-4">Edit Profile</h1>
+
+                        {error && (
+                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                                <span className="block sm:inline">{error}</span>
+                            </div>
+                        )}
+
                         <div className="bg-[#C6B06A] rounded-lg p-2 sm:p-2.5 md:p-3 lg:p-4 mb-4 md:mb-6 flex items-start gap-2">
-                            <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"></svg>
                             <svg className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
                                 <path d="M8.57634 1.99946L14.9271 12.9995C15.1113 13.3183 15.002 13.7261 14.6831 13.9101C14.5818 13.9687 14.4669 13.9995 14.3498 13.9995H1.64811C1.27992 13.9995 0.981445 13.701 0.981445 13.3328C0.981445 13.2157 1.01225 13.1008 1.07076 12.9995L7.42161 1.99946C7.60574 1.6806 8.01341 1.57135 8.33227 1.75544C8.43367 1.81396 8.51781 1.89812 8.57634 1.99946ZM2.80281 12.6661H13.1951L7.99894 3.66613L2.80281 12.6661ZM7.33227 10.6661H8.66561V11.9995H7.33227V10.6661ZM7.33227 5.99946H8.66561V9.33282H7.33227V5.99946Z" fill="black" />
                             </svg>
@@ -45,15 +177,37 @@ export default function EditProfilePage() {
                         </div>
 
                         <form onSubmit={handleSubmit} className="bg-white rounded-xl md:rounded-[40px] p-3 md:p-4 lg:p-6 shadow-sm mb-4 md:mb-6">
-                            <div className="flex flex-col items-start gap-4 p-3 md:p-4 lg:p-[16px] self-stretch">
+                        <div className="flex flex-col items-start gap-4 p-3 md:p-4 lg:p-[16px] self-stretch">
                                 <h2 className="text-base md:text-lg lg:text-xl font-bold">User Profile</h2>
 
                                 <div className="flex w-full">
-                                    <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 border border-gray-300 rounded-[24px] flex flex-col items-center justify-center cursor-pointer hover:border-gray-400 transition-colors">
-                                        <svg className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-                                            <path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z" fill="black" />
-                                        </svg>
-                                        <span className="text-[8px] md:text-[10px] lg:text-xs text-center text-[#2B2E38]">Upload profile pic</span>
+                                    <div 
+                                        className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 border border-gray-300 rounded-[24px] flex flex-col items-center justify-center cursor-pointer hover:border-gray-400 transition-colors overflow-hidden relative"
+                                        onClick={handleProfilePictureClick}
+                                    >
+                                        {profilePictureUrl ? (
+                                            <Image 
+                                                src={profilePictureUrl} 
+                                                alt="Profile" 
+                                                layout="fill" 
+                                                objectFit="cover"
+                                                className="w-full h-full"
+                                            />
+                                        ) : (
+                                            <>
+                                                <svg className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z" fill="black" />
+                                                </svg>
+                                                <span className="text-[8px] md:text-[10px] lg:text-xs text-center text-[#2B2E38]">Upload profile pic</span>
+                                            </>
+                                        )}
+                                        <input 
+                                            type="file" 
+                                            ref={fileInputRef} 
+                                            className="hidden" 
+                                            accept="image/*"
+                                            onChange={handleFileChange}
+                                        />
                                     </div>
                                 </div>
 
@@ -78,10 +232,12 @@ export default function EditProfilePage() {
                                             id="email"
                                             name="email"
                                             placeholder="Your email"
-                                            className="w-full p-2 md:p-2.5 lg:p-3 text-xs md:text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full p-2 md:p-2.5 lg:p-3 text-xs md:text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-100"
                                             value={formData.email}
-                                            onChange={handleChange}
+                                            disabled
+                                            readOnly
                                         />
+                                        <p className="text-xs text-gray-500">Email cannot be changed</p>
                                     </div>
                                 </div>
                             </div>
@@ -91,14 +247,14 @@ export default function EditProfilePage() {
 
                                 <div className="space-y-3 md:space-y-4">
                                     <div>
-                                        <label htmlFor="birthYear" className="block text-xs md:text-sm font-medium mb-2">What&apos;s your year of birth?</label>
+                                        <label htmlFor="yearOfBirth" className="block text-xs md:text-sm font-medium mb-2">What&apos;s your year of birth?</label>
                                         <input
-                                            type="text"
-                                            id="birthYear"
-                                            name="birthYear"
+                                            type="number"
+                                            id="yearOfBirth"
+                                            name="yearOfBirth"
                                             placeholder="Enter year of birth"
                                             className="w-full p-2 md:p-2.5 lg:p-3 text-xs md:text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            value={formData.birthYear}
+                                            value={formData.yearOfBirth}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -106,7 +262,7 @@ export default function EditProfilePage() {
                                     <div>
                                         <label className="block text-xs md:text-sm font-medium mb-2">What&apos;s your gender?</label>
                                         <div className="flex flex-wrap gap-2">
-                                            {['Female', 'Male', 'Other'].map(gender => (
+                                            {['male', 'female', 'other'].map(gender => (
                                                 <label key={gender} className="inline-flex items-center">
                                                     <input
                                                         type="radio"
@@ -117,7 +273,7 @@ export default function EditProfilePage() {
                                                         onChange={handleChange}
                                                     />
                                                     <span className={`px-2 md:px-3 lg:px-4 py-1 md:py-1.5 lg:py-2 text-xs md:text-sm rounded-full border transition-colors ${formData.gender === gender ? 'bg-blue-50 border-blue-300' : 'border-gray-300 hover:border-gray-400'}`}>
-                                                        {gender}
+                                                        {gender.charAt(0).toUpperCase() + gender.slice(1)}
                                                     </span>
                                                 </label>
                                             ))}
@@ -125,13 +281,13 @@ export default function EditProfilePage() {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="nationality" className="block text-xs md:text-sm font-medium mb-2">Where are you from?</label>
+                                        <label htmlFor="countryOfOrigin" className="block text-xs md:text-sm font-medium mb-2">Where are you from?</label>
                                         <div className="relative">
                                             <select
-                                                id="nationality"
-                                                name="nationality"
+                                                id="countryOfOrigin"
+                                                name="countryOfOrigin"
                                                 className="w-full p-2 md:p-2.5 lg:p-3 text-xs md:text-sm border border-gray-300 rounded-lg appearance-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                                value={formData.nationality}
+                                                value={formData.countryOfOrigin}
                                                 onChange={handleChange}
                                             >
                                                 <option value="" disabled>Select country</option>
@@ -150,31 +306,36 @@ export default function EditProfilePage() {
                                     <div>
                                         <label className="block text-xs md:text-sm font-medium mb-2">Where do you currently live mostly?</label>
                                         <div className="space-y-2 md:space-y-3">
-                                            {[
-                                                { id: 'country', name: 'country', placeholder: 'Select country', options: ['Thailand', 'United Kingdom', 'United States'] },
-                                                { id: 'region', name: 'region', placeholder: 'Select regions', options: ['Bangkok', 'London', 'New York'] },
-                                                { id: 'city', name: 'city', placeholder: 'Select city', options: ['Ladprao', 'Westminster', 'Manhattan'] }
-                                            ].map((field) => (
-                                                <div key={field.id} className="relative">
-                                                    <select
-                                                        id={field.id}
-                                                        name={field.name}
-                                                        className="w-full p-2 md:p-2.5 lg:p-3 text-xs md:text-sm border border-gray-300 rounded-lg appearance-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                                        value={formData[field.name]}
-                                                        onChange={handleChange}
-                                                    >
-                                                        <option value="" disabled>{field.placeholder}</option>
-                                                        {field.options.map(option => (
-                                                            <option key={option} value={option}>{option}</option>
-                                                        ))}
-                                                    </select>
-                                                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                                        <svg className="w-3 h-3 md:w-4 md:h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                                                        </svg>
-                                                    </div>
+                                            <div className="relative">
+                                                <select
+                                                    id="currentCountry"
+                                                    name="currentCountry"
+                                                    className="w-full p-2 md:p-2.5 lg:p-3 text-xs md:text-sm border border-gray-300 rounded-lg appearance-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                    value={formData.currentCountry}
+                                                    onChange={handleChange}
+                                                >
+                                                    <option value="" disabled>Select country</option>
+                                                    <option value="Thailand">Thailand</option>
+                                                    <option value="United Kingdom">United Kingdom</option>
+                                                    <option value="United States">United States</option>
+                                                </select>
+                                                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                                    <svg className="w-3 h-3 md:w-4 md:h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
                                                 </div>
-                                            ))}
+                                            </div>
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    id="currentCity"
+                                                    name="currentCity"
+                                                    placeholder="Enter your city"
+                                                    className="w-full p-2 md:p-2.5 lg:p-3 text-xs md:text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                    value={formData.currentCity}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -211,16 +372,17 @@ export default function EditProfilePage() {
 
                             <div className="flex flex-col xs:flex-row gap-2 md:gap-3 justify-end p-3 md:p-4 lg:p-[16px]">
                                 <Link
-                                    href="/admin/users"
+                                    href="/your-gtr"
                                     className="py-1 md:py-1.5 lg:py-2 px-2 md:px-3 lg:px-4 text-xs md:text-sm border border-gray-300 rounded-full text-center hover:bg-gray-50 transition-colors"
                                 >
                                     Cancel
                                 </Link>
                                 <button
                                     type="submit"
-                                    className="py-1 md:py-1.5 lg:py-2 px-2 md:px-3 lg:px-4 text-xs md:text-sm bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
+                                    disabled={saving}
+                                    className="py-1 md:py-1.5 lg:py-2 px-2 md:px-3 lg:px-4 text-xs md:text-sm bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors disabled:opacity-70"
                                 >
-                                    Save Edit
+                                    {saving ? 'Saving...' : 'Save Edit'}
                                 </button>
                             </div>
                         </form>
@@ -276,7 +438,7 @@ export default function EditProfilePage() {
                                 <p className="text-sm mb-2">You will permanently lose your:</p>
                                 <ul className="list-disc pl-5 text-sm space-y-1">
                                     <li className='text-xs'>All user information</li>
-                                    <li className='test-xs'>All of your assessment record</li>
+                                    <li className='text-xs'>All of your assessment record</li>
                                 </ul>
                             </div>
 
@@ -289,12 +451,16 @@ export default function EditProfilePage() {
                                 </button>
                                 <button
                                     className="py-2 px-4 bg-orange-500 text-black rounded-full text-sm flex items-center hover:bg-orange-600 transition-colors"
-                                    onClick={() => {
-                                        // Handle delete account logic here
-                                        console.log('Account deleted');
-                                        setShowDeleteModal(false);
-                                        // Redirect to the account deleted page
-                                        window.location.href = '/users/deleted';
+                                    onClick={async () => {
+                                        try {
+                                            await userService.deleteAccount();
+                                            // Redirect to the account deleted page
+                                            router.push('/users/deleted');
+                                        } catch (err) {
+                                            console.error('Error deleting account:', err);
+                                            setError(err.message || 'Failed to delete account. Please try again.');
+                                            setShowDeleteModal(false);
+                                        }
                                     }}
                                 >
                                     Delete Account

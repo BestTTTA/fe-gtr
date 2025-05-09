@@ -1,14 +1,15 @@
 "use client";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import gtrData from "./gtr.json";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
 const ApexLineChart = () => {
-  const [chartData] = useState({
+  const [chartData, setChartData] = useState({
     series: [
       {
         name: "Series 1",
@@ -52,6 +53,54 @@ const ApexLineChart = () => {
     },
   });
 
+  useEffect(() => {
+    try {
+      // Get history data from gtr.json
+      const historyData = gtrData.data.gtrHistory || [];
+
+      if (historyData.length > 0) {
+        // Format dates for display
+        const formattedDates = historyData.map(item => {
+          const date = new Date(item.date);
+          return `${date.getDate()}/${date.getMonth() + 1}`;
+        });
+
+        // Mark the last date as "Today"
+        if (formattedDates.length > 0) {
+          formattedDates[formattedDates.length - 1] = `Today ${formattedDates[formattedDates.length - 1]}`;
+        }
+
+        // Get GTR scores
+        const scores = historyData.map(item => item.gtr);
+
+        // Update chart data
+        setChartData(prevState => ({
+          ...prevState,
+          series: [{
+            name: "Series 1",
+            data: scores
+          }],
+          options: {
+            ...prevState.options,
+            xaxis: {
+              ...prevState.options.xaxis,
+              categories: formattedDates
+            },
+            tooltip: {
+              x: {
+                formatter: function (value, opts) {
+                  return formattedDates[opts.dataPointIndex];
+                },
+              },
+            }
+          }
+        }));
+      }
+    } catch (err) {
+      console.error("Error loading GTR history data:", err);
+    }
+  }, []);
+
   return (
     <>
       <div
@@ -70,10 +119,10 @@ const ApexLineChart = () => {
         </div>
         <div className="p-[8px]">
           <h1 className="font-bold text-[18px] mb-[8px]">
-            You’re currently on an upswing!
+            You&apos;re currently on an upswing!
           </h1>
           <p className="text-[14px] font-normal mb-[32px]">
-            In particular, the increased time you’ve spent with yourself shows a
+            In particular, the increased time you&apos;ve spent with yourself shows a
             significant impact on this trend.
           </p>
         </div>

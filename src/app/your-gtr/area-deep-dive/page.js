@@ -1,13 +1,40 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import SelfBoxMobile from "@/components/area-deep-dive/SelfBoxMobile";
 import SelfBoxDesk from "@/components/area-deep-dive/SelfBoxDesk";
 import FourBoxMobile from "@/components/area-deep-dive/FourBoxMobile";
 import FourBoxDesk from "@/components/area-deep-dive/FourBoxDesk";
+import gtrData from "@/components/dashboard/gtr.json";
 
 export default function AreaDeepDive() {
   const [totalExpanded, setTotalExpanded] = useState(true);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate API loading
+    const timer = setTimeout(() => {
+      setData(gtrData.data);
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex h-dvh py-[32px] px-[16px] flex-col bg-[#F0F2F5] overflow-y-auto">
+        <h1 className="text-[24px] font-bold">Area Deep Dive</h1>
+        <div className="flex justify-center items-center h-[50vh]">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#C6B06A]"></div>
+        </div>
+      </div>
+    );
+  }
+
+  // Extract the main GTR score from the JSON data
+  const mainGtrScore = data?.gtr ? parseFloat(data.gtr).toFixed(1) : "0.0";
 
   return (
     <div className="flex h-dvh py-[32px] px-[16px] flex-col bg-[#F0F2F5] overflow-y-auto">
@@ -59,7 +86,7 @@ export default function AreaDeepDive() {
                   alt="Picture of the author"
                 />
               </button>
-              <button
+              {/* <button
                 className="p-1"
                 onClick={() => setTotalExpanded(!totalExpanded)}
               >
@@ -69,17 +96,17 @@ export default function AreaDeepDive() {
                   height={25}
                   alt="Picture of the author"
                 />
-              </button>
+              </button> */}
             </div>
           </div>
           {totalExpanded && (
             <div className="md:hidden relative h-[28px] bg-[#B60A06] rounded-full overflow-hidden">
               <div
                 className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full flex items-center justify-end"
-                style={{ width: "74.9%" }}
+                style={{ width: `${mainGtrScore}%` }}
               >
                 <span className="absolute text-white font-medium text-sm px-2">
-                  74.9%
+                  {mainGtrScore}%
                 </span>
               </div>
             </div>
@@ -91,17 +118,34 @@ export default function AreaDeepDive() {
             Total GTR Score
           </span>
           <div className="w-full flex bg-[#B60A06] rounded-full h-[28px]">
-            <div className="w-[74.9%] bg-[#C6B06A] rounded-l-full"></div>
+            <div 
+              className="bg-[#C6B06A] rounded-l-full"
+              style={{ width: `${mainGtrScore}%` }}
+            >
+              <span className="text-white font-medium text-sm px-2">
+                {mainGtrScore}%
+              </span>
+            </div>
           </div>
         </div>
 
         {/* Self */}
-        <SelfBoxMobile />
-        <SelfBoxDesk />
+        <SelfBoxMobile areaData={data?.areas?.self} />
+        <SelfBoxDesk areaData={data?.areas?.self} />
 
         {/* Four */}
-        <FourBoxMobile />
-        <FourBoxDesk />
+        <FourBoxMobile 
+          socialData={data?.areas?.social}
+          actionsData={data?.areas?.actions}
+          getsData={data?.areas?.gets}
+          environmentData={data?.areas?.environment}
+        />
+        <FourBoxDesk 
+          socialData={data?.areas?.social}
+          actionsData={data?.areas?.actions}
+          getsData={data?.areas?.gets}
+          environmentData={data?.areas?.environment}
+        />
       </div>
     </div>
   );

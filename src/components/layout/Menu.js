@@ -3,12 +3,39 @@
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavbarContext } from "@/context/NavbarProvider";
+import { userService } from "@/services/userService";
+import gtrData from "../dashboard/gtr.json";
 
 function Menu() {
   const pathname = usePathname();
   const { isOpen, setIsOpen, activeTab, setActiveTab } = useContext(NavbarContext);
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [gtrScore, setGtrScore] = useState(0);
+
+  // Fetch user data when component mounts
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        setLoading(true);
+        const response = await userService.getProfile();
+        setUserData(response.data);
+        
+        // Get GTR score from the JSON data
+        if (gtrData && gtrData.data && gtrData.data.gtr) {
+          setGtrScore(gtrData.data.gtr);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -17,6 +44,26 @@ function Menu() {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
     setShowMenu(false);
+  };
+
+  // Get user initials for display when no profile pic is available
+  const getUserInitials = () => {
+    if (!userData || !userData.name) return "U";
+    const nameParts = userData.name.split(" ");
+    if (nameParts.length > 1) {
+      return `${nameParts[0][0]}${nameParts[1][0]}`;
+    }
+    return nameParts[0][0];
+  };
+
+  // Format user display name
+  const getDisplayName = () => {
+    if (!userData || !userData.name) return "User";
+    const nameParts = userData.name.split(" ");
+    if (nameParts.length > 1) {
+      return `${nameParts[0]} ${nameParts[1][0]}.`;
+    }
+    return userData.name;
   };
 
   return (
@@ -37,32 +84,49 @@ function Menu() {
             {/* Profile */}
             <div className="flex items-center flex-col justify-between px-[16px]">
               <div className="flex w-full items-center justify-between">
-                <a href="/users">
+                <Link href="/users">
                   <div className="flex items-center gap-[8px] py-[16px]">
-                    <Image
-                      src="/navbar-icons/profilepic.png"
-                      width={48}
-                      height={48}
-                      className="rounded-full"
-                      alt="Profile"
-                    />
-                    <p className="text-sm font-semibold text-white">Chris W.</p>
+                    {loading ? (
+                      <div className="w-[48px] h-[48px] rounded-full bg-gray-600 flex items-center justify-center">
+                        <span className="text-white text-sm">...</span>
+                      </div>
+                    ) : userData?.profilePicture ? (
+                      <Image
+                        src={userData.profilePicture}
+                        width={48}
+                        height={48}
+                        className="rounded-full object-cover"
+                        alt="Profile"
+                      />
+                    ) : (
+                      <div className="w-[48px] h-[48px] rounded-full bg-gray-600 flex items-center justify-center">
+                        <span className="text-white text-sm">{getUserInitials()}</span>
+                      </div>
+                    )}
+                    <p className="text-sm font-semibold text-white">
+                      {loading ? "Loading..." : getDisplayName()}
+                    </p>
                   </div>
-                </a>
-                <Image
-                  src="/navbar-icons/edit-icon.png"
-                  width={16}
-                  height={16}
-                  className="rounded-full"
-                  alt="Edit icon"
-                />
+                </Link>
+                <Link href="/your-gtr/edit">
+                  <Image
+                    src="/navbar-icons/edit-icon.png"
+                    width={16}
+                    height={16}
+                    className="rounded-full"
+                    alt="Edit icon"
+                  />
+                </Link>
               </div>
 
-              {/* Progress Bar */}
+              {/* Progress Bar - Updated to use GTR score */}
               <div className="flex w-full items-center justify-between">
                 <div className="relative w-full h-[18px] bg-[#B60A06] rounded-full overflow-hidden">
-                  <div className="absolute left-0 top-0 h-full w-[73.8%] bg-[#C6B06A] rounded-l-full border-r-2 border-[#0C2955] flex items-center justify-end pr-1 text-white text-[10.5px] font-medium">
-                    73.8
+                  <div 
+                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full border-r-2 border-[#0C2955] flex items-center justify-end pr-1 text-white text-[10.5px] font-medium"
+                    style={{ width: `${gtrScore || 0}%` }}
+                  >
+                    {gtrScore?.toFixed(1) || "0"}
                   </div>
                 </div>
               </div>

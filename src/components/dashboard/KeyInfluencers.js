@@ -1,6 +1,32 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import gtrData from "./gtr.json";
 
 function KeyInfluencers() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate API loading
+    const timer = setTimeout(() => {
+      try {
+        // Use the imported JSON data
+        setData(gtrData.data);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error loading GTR data:", err);
+        setLoading(false);
+      }
+    }, 500); // Simulate a short loading time
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Get high and low influencers from data
+  const highInfluencers = data?.keyInfluencers?.high || [];
+  const lowInfluencers = data?.keyInfluencers?.low || [];
+
   return (
     <div className="bg-white flex flex-col w-full p-[16px] rounded-[40px]">
     <h1 className="font-bold text-[18px] hidden md:flex">Key influencers</h1>
@@ -19,39 +45,28 @@ function KeyInfluencers() {
               Energy-Flow
             </div>
             <div className="flex w-full flex-col pl-[32px]">
-              <div className="flex ">
-                <div className="flex border-b w-full py-[16px] text-[14px] items-center font-normal gap-[8px]">
-                  <Image
-                    src="/dashboard/self-icon.png"
-                    width={27}
-                    height={27}
-                    alt="GTR Dashboard self-icon"
-                  />
-                  Mental Clarity (100%)
+              {loading ? (
+                <div className="py-4 flex justify-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-[#C6B06A]"></div>
                 </div>
-              </div>
-              <div className="flex py-[16px]">
-                <div className="flex border-b w-full pb-[16px] text-[14px] items-center font-normal gap-[8px]">
-                  <Image
-                    src="/dashboard/actions-icon.png"
-                    width={27}
-                    height={27}
-                    alt="GTR Dashboard actions-icon"
-                  />
-                 Gym (96%)
-                </div>
-              </div>
-              <div className="flex">
-                <div className="flex text-[14px] items-center font-normal gap-[8px]">
-                  <Image
-                    src="/dashboard/social-icon.png"
-                    width={27}
-                    height={27}
-                    alt="GTR Dashboard social-icon"
-                  />
-                  Kira (93%)
-                </div>
-              </div>
+              ) : (
+                highInfluencers.map((item, index) => (
+                  <div className="flex" key={`high-${index}`}>
+                    <div className={`flex ${index < highInfluencers.length - 1 ? 'border-b' : ''} w-full py-[16px] text-[14px] items-center font-normal gap-[8px]`}>
+                      <Image
+                        src="/dashboard/self-icon.png"
+                        width={27}
+                        height={27}
+                        alt="GTR Dashboard self-icon"
+                      />
+                      {item.element} ({item.gtr}%)
+                    </div>
+                  </div>
+                ))
+              )}
+              {!loading && highInfluencers.length === 0 && (
+                <div className="py-4 text-gray-500">No high influencers found</div>
+              )}
             </div>
           </div>
         </div>
@@ -69,39 +84,28 @@ function KeyInfluencers() {
               Energy-Tension
             </div>
             <div className="flex w-full flex-col pl-[32px]">
-              <div className="flex">
-                <div className="flex border-b w-full py-[16px] text-[14px] items-center font-normal gap-[8px]">
-                  <Image
-                    src="/dashboard/actions-icon.png"
-                    width={27}
-                    height={27}
-                    alt="GTR Dashboard actions-icon"
-                  />
-                  Making tax rep0rt (5%)
+              {loading ? (
+                <div className="py-4 flex justify-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-[#B60A06]"></div>
                 </div>
-              </div>
-              <div className="flex py-[16px]">
-                <div className="flex border-b w-full pb-[16px] text-[14px] items-center font-normal gap-[8px]">
-                  <Image
-                    src="/dashboard/actions-icon.png"
-                    width={27}
-                    height={27}
-                    alt="GTR Dashboard actions-icon"
-                  />
-                 Gym (96%)
-                </div>
-              </div>
-              <div className="flex">
-                <div className="flex text-[14px] items-center font-normal gap-[8px]">
-                  <Image
-                    src="/dashboard/social-icon.png"
-                    width={27}
-                    height={27}
-                    alt="GTR Dashboard social-icon"
-                  />
-                  Kira (93%)
-                </div>
-              </div>
+              ) : (
+                lowInfluencers.map((item, index) => (
+                  <div className="flex" key={`low-${index}`}>
+                    <div className={`flex ${index < lowInfluencers.length - 1 ? 'border-b' : ''} w-full py-[16px] text-[14px] items-center font-normal gap-[8px]`}>
+                      <Image
+                        src="/dashboard/actions-icon.png"
+                        width={27}
+                        height={27}
+                        alt="GTR Dashboard actions-icon"
+                      />
+                      {item.element} ({item.gtr}%)
+                    </div>
+                  </div>
+                ))
+              )}
+              {!loading && lowInfluencers.length === 0 && (
+                <div className="py-4 text-gray-500">No low influencers found</div>
+              )}
             </div>
           </div>
         </div>

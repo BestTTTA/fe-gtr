@@ -1,240 +1,94 @@
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
-function SelfBoxMobile() {
-    const [selfExpanded, setSelfExpanded] = useState(true);
+export default function SelfBoxMobile({ areaData }) {
+  const [expanded, setExpanded] = useState(true);
+  const [showElements, setShowElements] = useState(false);
+  
+  // Get the self GTR score from the passed data
+  const selfScore = areaData?.gtr ? parseFloat(areaData.gtr).toFixed(1) : "0.0";
+
+  // Function to format element name for display
+  const formatElementName = (name) => {
+    return name
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   return (
-    <>
-      <div className="md:hidden mb-6">
-        <div className="flex justify-between items-center mb-2">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
-            <span className="text-gray-700">Self</span>
-          </div>
-          <div className="flex gap-2">
-            <button className="p-1">
-              <Image
-                src="/area-deep-dive/magnify-icon.svg"
-                width={40}
-                height={40}
-                alt="Picture of the author"
-              />
-            </button>
-            <button
-              className="p-1"
-              onClick={() => setSelfExpanded(!selfExpanded)}
-            >
-              <Image
-                src="/area-deep-dive/arrow-up-icon.svg"
-                width={25}
-                height={25}
-                alt="Picture of the author"
-              />
-            </button>
+    <div className="md:hidden mb-6 mt-8">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-gray-700 text-[14px]">Self</span>
+        <div className="flex gap-2">
+          <button className="p-1" onClick={() => setShowElements(!showElements)}>
+            <Image
+              src="/area-deep-dive/magnify-icon.svg"
+              width={40}
+              height={40}
+              alt="Magnify icon"
+            />
+          </button>
+          {/* <button className="p-1" onClick={() => setExpanded(!expanded)}>
+            <Image
+              src="/area-deep-dive/arrow-up-icon.svg"
+              width={25}
+              height={25}
+              alt="Arrow icon"
+            />
+          </button> */}
+        </div>
+      </div>
+      {expanded && (
+        <div className="relative h-[28px] bg-[#B60A06] rounded-full overflow-hidden">
+          <div
+            className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full flex items-center justify-end"
+            style={{ width: `${selfScore}%` }}
+          >
+            <span className="absolute text-white font-medium text-sm px-2">
+              {selfScore}%
+            </span>
           </div>
         </div>
+      )}
 
-        {selfExpanded && (
-          <>
-            <div className="relative h-[28px] bg-[#B60A06] rounded-full overflow-hidden mb-4">
-              <div
-                className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                style={{ width: "77.5%" }}
-              >
-                <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2">
-                  77.5%
-                </span>
-              </div>
-            </div>
-
-            {/* Self Subcategories */}
-            <div className="pl-4 border-l-2 border-[#9CA3B0] space-y-4 p">
-              {/* Physical Health */}
-              <div>
-                <p className="text-gray-700 mb-1">Physical Health</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "65.7%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      65.7%
-                    </span>
-                  </div>
+      {/* Elements section */}
+      {showElements && areaData?.elements && (
+        <div className="mt-4 pl-4 border-l-2 border-gray-200">
+          {areaData.elements.map((element, index) => (
+            <div key={index} className="mb-4">
+              <div className="flex justify-between items-center mb-1">
+                <div className="flex items-center">
+                  {element.isHigh && (
+                    <span className="mr-2 text-blue-500">●</span>
+                  )}
+                  {element.isLow && (
+                    <span className="mr-2 text-red-500">●</span>
+                  )}
+                  <span className="text-gray-700">
+                    {formatElementName(element.element)}
+                  </span>
                 </div>
+                <span className="text-gray-700 font-medium">{element.gtr}%</span>
               </div>
-
-              {/* Physical Fitness */}
-              <div>
-                <p className="text-gray-700 mb-1">Physical Fitness</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "78.9%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      78.9%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bodily Comfort */}
-              <div>
-                <p className="text-gray-700 mb-1">Bodily Comfort</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "60.3%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      60.3%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Emotional Health */}
-              <div>
-                <p className="text-gray-700 mb-1">Emotional Health</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "87.2%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      87.2%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Mood */}
-              <div>
-                <p className="text-gray-700 mb-1">Mood</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "76.9%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      76.9%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Stress level */}
-              <div>
-                <p className="text-gray-700 mb-1">Stress level</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "80.8%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      80.8%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Mental Clarity */}
-              <div className="relative">
-                <p className="text-gray-700 mb-1 flex items-center gap-1">
-                  <Image
-                    src="/area-deep-dive/mental-icon.svg"
-                    width={30}
-                    height={30}
-                    alt="Picture of the author"
-                  />
-                  Mental Clarity
-                </p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "100%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      100%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Self-Awareness */}
-              <div>
-                <p className="text-gray-700 mb-1">Self-Awareness</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "80.3%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      80.3%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Self-Acceptance */}
-              <div>
-                <p className="text-gray-700 mb-1">Self-Acceptance</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "92.4%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      92.4%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Sense of Purpose */}
-              <div className="relative">
-                <p className="text-gray-700 mb-1 flex items-center gap-1">
-                  <Image
-                    src="/area-deep-dive/sense-icon.svg"
-                    width={30}
-                    height={30}
-                    alt="Picture of the author"
-                  />
-                  Sense of Purpose
-                </p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "53.1%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      53.1%
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Inner Peace */}
-              <div>
-                <p className="text-gray-700 mb-1">Inner Peace</p>
-                <div className="relative h-6 bg-[#B60A06] rounded-full overflow-hidden">
-                  <div
-                    className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
-                    style={{ width: "67.5%" }}
-                  >
-                    <span className="absolute right-2 text-white font-medium top-1/2 transform -translate-y-1/2 text-sm">
-                      67.5%
-                    </span>
-                  </div>
+              <div className="relative h-[16px] bg-[#B60A06] rounded-full overflow-hidden">
+                <div
+                  className="absolute left-0 top-0 h-full bg-[#C6B06A] rounded-l-full"
+                  style={{ width: `${element.gtr}%` }}
+                >
                 </div>
               </div>
             </div>
-          </>
-        )}
-      </div>
-    </>
+          ))}
+          
+          {areaData.notes && (
+            <div className="mt-2 mb-4 bg-gray-50 p-3 rounded-md">
+              <h4 className="text-sm font-semibold mb-1">Notes:</h4>
+              <p className="text-sm text-gray-600">{areaData.notes}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
-
-export default SelfBoxMobile;
