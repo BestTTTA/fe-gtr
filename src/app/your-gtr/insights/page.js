@@ -13,9 +13,9 @@ function TabNavigation() {
    { id: 'Overview', label: 'Overview' },
    { id: 'Self', label: 'Self' },
    { id: 'Social', label: 'Social' },
-   { id: 'Action', label: 'Action' },
-   { id: 'Obtainments', label: 'Obtainments' },
-   { id: 'Gets', label: 'Gets' }
+   { id: 'Action', label: 'Actions' },
+//    { id: 'Obtainments', label: 'Obtainments' },
+   { id: 'Gets', label: 'Gets Environments' }
  ];
 
  // Render appropriate component based on active tab
