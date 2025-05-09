@@ -1,5 +1,7 @@
 import SelfCard from "@/components/self/SelfCard";
 import KeyInfluencers from "@/components/dashboard/KeyInfluencers";
+import TopEmotions from "@/components/dashboard/TopEmotions";
+import ApexLineChart from "@/components/dashboard/ApexLineChart";
 
 export default function Self() {
   return (
@@ -18,7 +20,9 @@ export default function Self() {
         </div>
       </div>
 
-
+      <KeyInfluencers />
+      <TopEmotions />
+      <ApexLineChart />
     </div>
   );
 }
