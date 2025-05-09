@@ -2,7 +2,6 @@ import SelfCard from "@/components/self/SelfCard";
 import KeyInfluencers from "@/components/dashboard/KeyInfluencers";
 import TopEmotions from "@/components/dashboard/TopEmotions";
 import ApexLineChart from "@/components/dashboard/ApexLineChart";
-import { useState } from "react";
 import Image from "next/image";
 
 export default function Self() {
