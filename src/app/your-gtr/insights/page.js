@@ -34,7 +34,7 @@ function TabNavigation() {
      case 'Gets':
        return <div className="h-screen bg-[#F3F4F6]"></div>;
      default:
-       return <Overview />;
+       return <AreaDeepDive />;
    }
  };
 
