@@ -82,7 +82,7 @@ function GtrScore() {
             Self
           </div>
           <div className="flex text-[18px] font-bold items-center gap-[8px]">
-            {selfScore}
+            {selfScore}%
             <Image
               src="/dashboard/arrow-up-icon.png"
               width={27}
@@ -112,7 +112,7 @@ function GtrScore() {
             Social
           </div>
           <div className="flex text-[18px] font-bold items-center gap-[8px]">
-            {socialScore}
+            {socialScore}%
             <Image
               src="/dashboard/down-icon.png"
               width={27}
@@ -142,7 +142,7 @@ function GtrScore() {
             Actions
           </div>
           <div className="flex text-[18px] font-bold items-center gap-[8px]">
-            {actionsScore}
+            {actionsScore}%
             <Image
               src="/dashboard/arrow-up-icon.png"
               width={27}
@@ -172,7 +172,7 @@ function GtrScore() {
             Obtainments
           </div>
           <div className="flex text-[18px] font-bold items-center gap-[8px]">
-            {getsScore}
+            {getsScore}%
             <Image
               src="/dashboard/arrow-up-icon.png"
               width={27}
@@ -202,7 +202,7 @@ function GtrScore() {
             Environment
           </div>
           <div className="flex text-[18px] font-bold items-center gap-[8px]">
-            {environmentScore}
+            {environmentScore}%
             <Image
               src="/dashboard/arrow-up-icon.png"
               width={27}
